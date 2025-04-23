@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f0d08a2112.js" crossorigin="anonymous"></script>
+    <title>MemeGen</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body onload="onInitGallery()" onresize="onResize()">
+    <header class="main-header">
+        <div class="content-wrapper">
+            <div class="logo">
+                <button onclick="toggleMenu()" hidden type="button" class="btn-toggle-menu">☰</button>MEMEGEN
+            </div>
+            <nav class="main-nav">
+                <ul class="main-nav-list">
+                    <li><a href="#"></a>Gallery</li>
+                    <li><a href="#"></a>About</li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="gallery-container">
+        <ul class="img-list">
+            <li><img onclick="onInitGen()" src="imgs/meme-imgs/meme-imgs (square)/1.jpg" alt=""></li>
+            <li><img onclick="onInitGen()" src="imgs/meme-imgs/meme-imgs (square)/2.jpg" alt=""></li>
+        </ul>
+    </section>
+
+    <section class="gen-container">
+        <div class="canvas-container">
+            <canvas class="meme">
+
+            </canvas>
+        </div>
+        <div class="generator" action="">
+            <label for=""><input type="text" placeholder="text"></label>
+            <label for=""><input type="color"></label>
+            <button class="download-btn">Download</button>
+        </div>
+    </section>
+</body>
+
+</html>
