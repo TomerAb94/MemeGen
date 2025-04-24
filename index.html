@@ -9,23 +9,21 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
-<body onload="onInitGallery()" onresize="onResize()">
-    <header class="main-header">
-        <div class="content-wrapper">
+<body class="main-layout" onload="onInitGallery()" onresize="onResize()">
+    <header class="main-header full flex space-between align-center">
             <div class="logo">
                 <button onclick="toggleMenu()" hidden type="button" class="btn-toggle-menu">☰</button>MEMEGEN
             </div>
             <nav class="main-nav">
-                <ul class="main-nav-list">
+                <ul class="main-nav-list clean-list flex">
                     <li><a href="#"></a>Gallery</li>
                     <li><a href="#"></a>About</li>
                 </ul>
             </nav>
-        </div>
     </header>
 
     <section class="gallery-container">
-        <ul class="img-list">
+        <ul class="img-list clean-list flex wrap justify-center">
             <li><img onclick="onInitGen()" src="imgs/meme-imgs/meme-imgs (square)/1.jpg" alt=""></li>
             <li><img onclick="onInitGen()" src="imgs/meme-imgs/meme-imgs (square)/2.jpg" alt=""></li>
         </ul>

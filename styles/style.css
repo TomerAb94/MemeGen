@@ -8,6 +8,9 @@
 @import url('basics/buttons.css');
 
 /* COMPONENTS */
+@import url('components/header.css');
+@import url('components/logo.css');
+@import url('components/main-nav-list.css');
 
 /* MQ */
 @import url('setup/mq.css');

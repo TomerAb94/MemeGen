@@ -1,0 +1,14 @@
+.main-nav-list>li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    height: 80px;
+    width: 80px;
+    border-left: 1px solid var(--clr-secondery-base);
+}
+
+.main-nav-list>li:last-child{
+    border-right: 1px solid var(--clr-secondery-base);
+}

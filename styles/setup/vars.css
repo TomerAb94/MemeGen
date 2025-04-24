@@ -1,0 +1,15 @@
+/* pallette */
+
+:root {
+    /* primary color shades of gray */
+    --clr-primary-base: #47474f;
+    
+    /* secondery color */
+    --clr-secondery-base: #f5f5fa;
+
+    /* hover color */
+
+    /* breakpoint vars */
+    --l: 1060px;
+    --m: 890px
+}
