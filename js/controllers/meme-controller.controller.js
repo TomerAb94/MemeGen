@@ -35,11 +35,19 @@ function renderTxt() {
     const memeData = getMemeData()
 
     gCtx.font = `${memeData.lines[memeData.selectedLineIdx].size}px ${memeData.lines[memeData.selectedLineIdx].font}`
+    gCtx.fillStyle=`${memeData.lines[memeData.selectedLineIdx].color}`
     gCtx.fillText(`${memeData.lines[memeData.selectedLineIdx].txt}`, 120, 60)
 }
 
 function onSetLineTxt(txt) {
     SetLineTxt(txt)
+
+    const memeData = getMemeData()
+    renderMeme(memeData.selectedImgId)
+}
+
+function onSetLineColor(color){
+    SetLineColor(color)
 
     const memeData = getMemeData()
     renderMeme(memeData.selectedImgId)

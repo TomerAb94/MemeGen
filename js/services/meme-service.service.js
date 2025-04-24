@@ -62,6 +62,10 @@ function SetLineTxt(txt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
 
+function SetLineColor(color){
+    gMeme.lines[gMeme.selectedLineIdx].color = color
+}
+
 function returnDeafultSet() {
     gMeme.selectedLineIdx = 0,
         gMeme.lines = [

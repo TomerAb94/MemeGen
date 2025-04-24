@@ -41,7 +41,7 @@
         <div class="generator" action="">
             <label for=""><input class="txt-input" oninput="onSetLineTxt(this.value)" type="text"
                     placeholder="text"></label>
-            <label for=""><input type="color"></label>
+            <label for=""><input oninput="onSetLineColor(this.value)" type="color"></label>
             <a href="#" onclick="onDownloadCanvas(this)" download="file-name">Download</a>
         </div>
     </section>
