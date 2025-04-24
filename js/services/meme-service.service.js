@@ -66,6 +66,10 @@ function SetLineColor(color){
     gMeme.lines[gMeme.selectedLineIdx].color = color
 }
 
+function  SetFontSize(value){
+    gMeme.lines[gMeme.selectedLineIdx].size+=value
+}
+
 function returnDeafultSet() {
     gMeme.selectedLineIdx = 0,
         gMeme.lines = [

@@ -24,11 +24,6 @@
 
     <section class="gallery-container">
         <ul class="img-list clean-list flex wrap justify-center">
-            <!-- <li><img id="1" onclick="onInitGen(id)" src="imgs/1.jpg" alt=""></li>
-            <li><img id="2" onclick="onInitGen(id)" src="imgs/meme-imgs/meme-imgs (square)/2.jpg" alt=""></li>
-            <li><img id="3" onclick="onInitGen(id)" src="imgs/meme-imgs/meme-imgs (square)/3.jpg" alt=""></li>
-            <li><img id="4" onclick="onInitGen(id)" src="imgs/meme-imgs/meme-imgs (square)/4.jpg" alt=""></li>
-            <li><img id="5" onclick="onInitGen(id)" src="imgs/meme-imgs/meme-imgs (various aspect ratios)/drevil.jpg" alt=""></li> -->
         </ul>
     </section>
 
@@ -42,6 +37,8 @@
             <label for=""><input class="txt-input" oninput="onSetLineTxt(this.value)" type="text"
                     placeholder="text"></label>
             <label for=""><input oninput="onSetLineColor(this.value)" type="color"></label>
+            <button onclick="onSetFontSize(2)" class="increase-font">+</button>
+            <button onclick="onSetFontSize(-2)" class="decrease-font">-</button>
             <a href="#" onclick="onDownloadCanvas(this)" download="file-name">Download</a>
         </div>
     </section>

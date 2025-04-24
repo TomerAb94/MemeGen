@@ -53,6 +53,13 @@ function onSetLineColor(color){
     renderMeme(memeData.selectedImgId)
 }
 
+function onSetFontSize(value){
+    SetFontSize(value)
+
+    const memeData = getMemeData()
+    renderMeme(memeData.selectedImgId)
+}
+
 function onDownloadCanvas(elLink) {
     const dataUrl = gElCanvas.toDataURL()
     elLink.href = dataUrl
