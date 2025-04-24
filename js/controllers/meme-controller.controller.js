@@ -9,6 +9,7 @@ function onInitGen(){
     // onResize()
     // renderMeme()
     hideSection('.gallery-container')
+    displaySection('.gen-container')
 }
 
 function renderMeme(){
