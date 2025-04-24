@@ -24,14 +24,17 @@
 
     <section class="gallery-container">
         <ul class="img-list clean-list flex wrap justify-center">
-            <li><img onclick="onInitGen()" src="imgs/meme-imgs/meme-imgs (square)/1.jpg" alt=""></li>
-            <li><img onclick="onInitGen()" src="imgs/meme-imgs/meme-imgs (square)/2.jpg" alt=""></li>
+            <li><img id="1" onclick="onInitGen(id)" src="imgs/meme-imgs/meme-imgs (square)/1.jpg" alt=""></li>
+            <li><img id="2" onclick="onInitGen(id)" src="imgs/meme-imgs/meme-imgs (square)/2.jpg" alt=""></li>
+            <li><img id="3" onclick="onInitGen(id)" src="imgs/meme-imgs/meme-imgs (square)/3.jpg" alt=""></li>
+            <li><img id="4" onclick="onInitGen(id)" src="imgs/meme-imgs/meme-imgs (square)/4.jpg" alt=""></li>
+            <li><img id="5" onclick="onInitGen(id)" src="imgs/meme-imgs/meme-imgs (various aspect ratios)/drevil.jpg" alt=""></li>
         </ul>
     </section>
 
     <section class="gen-container">
         <div class="canvas-container">
-            <canvas class="meme">
+            <canvas class="meme" width="400" height="400">
 
             </canvas>
         </div>
