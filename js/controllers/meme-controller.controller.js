@@ -17,7 +17,6 @@ function onInitGen(imgId) {
 
 function renderMeme(imgId) {
     renderImg(imgId)
-    renderTxt()
 }
 
 function renderImg(imgId) {
@@ -25,9 +24,11 @@ function renderImg(imgId) {
     const img = new Image()
     img.src = clickedImg.url
 
-    gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
-    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-
+    img.onload = () => {
+        gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+        renderTxt()
+    }
 }
 
 function renderTxt() {
@@ -39,15 +40,15 @@ function renderTxt() {
 
 function onSetLineTxt(txt) {
     SetLineTxt(txt)
-    
+
     const memeData = getMemeData()
     renderMeme(memeData.selectedImgId)
 }
 
-
-
-function onClearCanvas() {
-    gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+function onDownloadCanvas(elLink) {
+    const dataUrl = gElCanvas.toDataURL()
+    elLink.href = dataUrl
+    elLink.download = 'my-meme'
 }
 
 function hideSection(containerName) {

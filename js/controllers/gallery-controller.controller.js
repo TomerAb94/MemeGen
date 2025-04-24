@@ -18,6 +18,6 @@ function renderGallery() {
     const imgList = document.querySelector('.img-list')
     imgList.innerHTML = imgs.map(img=>{
         return `<li><img id="${img.id}" onclick="onInitGen(id)" src="imgs/${img.id}.jpg" alt=""></li>`
-    })
+    }).join('')
 
 }
