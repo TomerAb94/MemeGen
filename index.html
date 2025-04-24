@@ -24,11 +24,11 @@
 
     <section class="gallery-container">
         <ul class="img-list clean-list flex wrap justify-center">
-            <li><img id="1" onclick="onInitGen(id)" src="imgs/meme-imgs/meme-imgs (square)/1.jpg" alt=""></li>
+            <!-- <li><img id="1" onclick="onInitGen(id)" src="imgs/1.jpg" alt=""></li>
             <li><img id="2" onclick="onInitGen(id)" src="imgs/meme-imgs/meme-imgs (square)/2.jpg" alt=""></li>
             <li><img id="3" onclick="onInitGen(id)" src="imgs/meme-imgs/meme-imgs (square)/3.jpg" alt=""></li>
             <li><img id="4" onclick="onInitGen(id)" src="imgs/meme-imgs/meme-imgs (square)/4.jpg" alt=""></li>
-            <li><img id="5" onclick="onInitGen(id)" src="imgs/meme-imgs/meme-imgs (various aspect ratios)/drevil.jpg" alt=""></li>
+            <li><img id="5" onclick="onInitGen(id)" src="imgs/meme-imgs/meme-imgs (various aspect ratios)/drevil.jpg" alt=""></li> -->
         </ul>
     </section>
 
@@ -39,7 +39,7 @@
             </canvas>
         </div>
         <div class="generator" action="">
-            <label for=""><input type="text" placeholder="text"></label>
+            <label for=""><input class="txt-input" oninput="onSetLineTxt(this.value)" type="text" placeholder="text"></label>
             <label for=""><input type="color"></label>
             <button class="download-btn">Download</button>
         </div>
