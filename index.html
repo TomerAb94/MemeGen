@@ -11,15 +11,15 @@
 
 <body class="main-layout" onload="onInitGallery()" onresize="onResize()">
     <header class="main-header full flex space-between align-center">
-            <div class="logo">
-                <button onclick="toggleMenu()" hidden type="button" class="btn-toggle-menu">☰</button>MEMEGEN
-            </div>
-            <nav class="main-nav">
-                <ul class="main-nav-list clean-list flex">
-                    <li><a href="#"></a>Gallery</li>
-                    <li><a href="#"></a>About</li>
-                </ul>
-            </nav>
+        <div class="logo">
+            <button onclick="toggleMenu()" hidden type="button" class="btn-toggle-menu">☰</button>MEMEGEN
+        </div>
+        <nav class="main-nav">
+            <ul class="main-nav-list clean-list flex">
+                <li><a href="#"></a>Gallery</li>
+                <li><a href="#"></a>About</li>
+            </ul>
+        </nav>
     </header>
 
     <section class="gallery-container">
@@ -41,6 +41,11 @@
             <button class="download-btn">Download</button>
         </div>
     </section>
+
+    <script src="js/services/meme-service.service.js"></script>
+    <script src="js/services/gallery-service.service.js"></script>
+    <script src="js/controllers/meme-controller.controller.js"></script>
+    <script src="js/controllers/gallery-controller.controller.js"></script>
 </body>
 
 </html>
