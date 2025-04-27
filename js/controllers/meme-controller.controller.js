@@ -32,32 +32,35 @@ function renderImg(imgId, onImgReady) {
 }
 
 function renderTxt() {
-    const memeData = getMeme()
+    const meme = getMeme()
+    console.log(meme.lines.length);
 
-    gCtx.font = `${memeData.lines[memeData.selectedLineIdx].size}px ${memeData.lines[memeData.selectedLineIdx].font}`
-    gCtx.fillStyle = `${memeData.lines[memeData.selectedLineIdx].color}`
-    gCtx.fillText(`${memeData.lines[memeData.selectedLineIdx].txt}`, 120, 60)
+    meme.lines.forEach((line, index) => {
+        gCtx.font = `${line.size}px ${line.font}`
+        gCtx.fillStyle = `${line.color}`
+        gCtx.fillText(`${line.txt}`, 120, 60 + index * 30)
+    })
 }
 
 function onSetLineTxt(txt) {
     SetLineTxt(txt)
 
-    const memeData = getMeme()
-    renderMeme(memeData.selectedImgId)
+    const meme = getMeme()
+    renderMeme(meme.selectedImgId)
 }
 
 function onSetLineColor(color) {
     SetLineColor(color)
 
-    const memeData = getMeme()
-    renderMeme(memeData.selectedImgId)
+    const meme = getMeme()
+    renderMeme(meme.selectedImgId)
 }
 
 function onSetFontSize(value) {
     SetFontSize(value)
 
-    const memeData = getMeme()
-    renderMeme(memeData.selectedImgId)
+    const meme = getMeme()
+    renderMeme(meme.selectedImgId)
 }
 
 function onDownloadCanvas(elLink) {

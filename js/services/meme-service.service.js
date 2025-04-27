@@ -37,6 +37,12 @@ var gMeme = {
             font: 'Arial, Helvetica, sans-serif',
             size: 20,
             color: 'black'
+        },
+        {
+            txt: 'TEXT',
+            font: 'Arial, Helvetica, sans-serif',
+            size: 20,
+            color: 'black'
         }
     ]
 }
@@ -50,7 +56,7 @@ function getImgById(imgId) {
     return img
 }
 
-function getImgs(){
+function getImgs() {
     return gImgs
 }
 
@@ -62,17 +68,23 @@ function SetLineTxt(txt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
 
-function SetLineColor(color){
+function SetLineColor(color) {
     gMeme.lines[gMeme.selectedLineIdx].color = color
 }
 
-function  SetFontSize(value){
-    gMeme.lines[gMeme.selectedLineIdx].size+=value
+function SetFontSize(value) {
+    gMeme.lines[gMeme.selectedLineIdx].size += value
 }
 
 function returnDeafultSet() {
     gMeme.selectedLineIdx = 0,
         gMeme.lines = [
+            {
+                txt: 'TEXT',
+                font: 'Arial, Helvetica, sans-serif',
+                size: 20,
+                color: 'black'
+            },
             {
                 txt: 'TEXT',
                 font: 'Arial, Helvetica, sans-serif',
