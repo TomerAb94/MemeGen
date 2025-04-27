@@ -54,7 +54,7 @@ function getImgs(){
     return gImgs
 }
 
-function getMemeData() {
+function getMeme() {
     return gMeme
 }
 
