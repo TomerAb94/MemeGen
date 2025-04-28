@@ -33,13 +33,21 @@ function renderImg(imgId, onImgReady) {
 
 function renderTxt() {
     const meme = getMeme()
-    console.log(meme.lines.length);
 
     meme.lines.forEach((line, index) => {
         gCtx.font = `${line.size}px ${line.font}`
         gCtx.fillStyle = `${line.color}`
-        gCtx.fillText(`${line.txt}`, 120, 60 + index * 30)
+
+        const textWidth = gCtx.measureText(line.txt).width;
+        const x = (gElCanvas.width - textWidth) / 2;
+
+        const spacing = 30
+
+        const y = (index === 1) ? gElCanvas.height - 50 : ((index * spacing) + 50);
+
+        gCtx.fillText(`${line.txt}`, x, y)
     })
+
 }
 
 function onSetLineTxt(txt) {
