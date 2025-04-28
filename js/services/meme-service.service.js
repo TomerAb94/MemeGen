@@ -43,7 +43,7 @@ var gMeme = {
             font: 'Arial, Helvetica, sans-serif',
             size: 20,
             color: 'black'
-        }
+        },
     ]
 }
 
@@ -74,6 +74,15 @@ function SetLineColor(color) {
 
 function SetFontSize(value) {
     gMeme.lines[gMeme.selectedLineIdx].size += value
+}
+
+function addLine(){
+    gMeme.lines.push( {
+        txt: 'TEXT',
+        font: 'Arial, Helvetica, sans-serif',
+        size: 20,
+        color: 'black'
+    })
 }
 
 function returnDeafultSet() {

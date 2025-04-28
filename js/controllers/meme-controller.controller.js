@@ -77,6 +77,13 @@ function onDownloadCanvas(elLink) {
     elLink.download = 'my-meme'
 }
 
+function onAddLine(){
+    addLine()
+
+    const meme = getMeme()
+    renderMeme(meme.selectedImgId)
+}
+
 function hideSection(containerName) {
     document.querySelector(containerName).classList.add('hide')
 }

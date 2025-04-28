@@ -37,8 +37,9 @@
             <label for=""><input class="txt-input" oninput="onSetLineTxt(this.value)" type="text"
                     placeholder="text"></label>
             <label for=""><input oninput="onSetLineColor(this.value)" type="color"></label>
-            <button onclick="onSetFontSize(2)" class="increase-font">+</button>
-            <button onclick="onSetFontSize(-2)" class="decrease-font">-</button>
+            <button onclick="onSetFontSize(2)" class="increase-font-btn">+</button>
+            <button onclick="onSetFontSize(-2)" class="decrease-font-btn">-</button>
+            <button onclick="onAddLine()" class="add-line-btn">Add Line</button>
             <a href="#" onclick="onDownloadCanvas(this)" download="file-name">Download</a>
         </div>
     </section>
