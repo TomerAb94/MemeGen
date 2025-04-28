@@ -89,6 +89,11 @@ function switchLine() {
     gMeme.selectedLineIdx === gMeme.lines.length - 1 ? gMeme.selectedLineIdx = 0 : gMeme.selectedLineIdx++
 }
 
+function saveLineLocation(index, x, y) {
+    gMeme.lines[index].x = x
+    gMeme.lines[index].y = y
+}
+
 function returnDeafultSet() {
     gMeme.selectedLineIdx = 0,
         gMeme.lines = [
@@ -106,3 +111,4 @@ function returnDeafultSet() {
             }
         ]
 }
+

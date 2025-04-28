@@ -47,6 +47,8 @@ function renderTxt() {
 
         gCtx.fillText(`${line.txt}`, x, y)
 
+        saveLineLocation(index,x,y)
+
         if (index === meme.selectedLineIdx) drawTxtFrame(line.txt, x, y, line.size)
     })
 
