@@ -46,9 +46,30 @@ function renderTxt() {
         const y = (index === 1) ? gElCanvas.height - 50 : ((index * spacing) + 50);
 
         gCtx.fillText(`${line.txt}`, x, y)
+
+        if (index === meme.selectedLineIdx) drawTxtFrame(line.txt, x, y, line.size)
     })
 
 }
+
+function drawTxtFrame(text, x, y, size) {
+
+    const textMetrics = gCtx.measureText(text)
+    const rectWidth = textMetrics.width
+    const rectHeight = size
+    const rectX = x
+    const rectY = y - rectHeight
+
+
+    gCtx.strokeRect(rectX, rectY, rectWidth, rectHeight)
+}
+
+// function onResize() {
+
+//     const elContainer = document.querySelector('.canvas-container')
+//     console.log(elContainer);
+//     gElCanvas.width = elContainer.clientWidth
+// }
 
 function onSetLineTxt(txt) {
     SetLineTxt(txt)
@@ -77,8 +98,15 @@ function onDownloadCanvas(elLink) {
     elLink.download = 'my-meme'
 }
 
-function onAddLine(){
+function onAddLine() {
     addLine()
+
+    const meme = getMeme()
+    renderMeme(meme.selectedImgId)
+}
+
+function onSwitchLine() {
+    switchLine()
 
     const meme = getMeme()
     renderMeme(meme.selectedImgId)

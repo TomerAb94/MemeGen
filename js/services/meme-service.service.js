@@ -76,13 +76,17 @@ function SetFontSize(value) {
     gMeme.lines[gMeme.selectedLineIdx].size += value
 }
 
-function addLine(){
-    gMeme.lines.push( {
+function addLine() {
+    gMeme.lines.push({
         txt: 'TEXT',
         font: 'Arial, Helvetica, sans-serif',
         size: 20,
         color: 'black'
     })
+}
+
+function switchLine() {
+    gMeme.selectedLineIdx === gMeme.lines.length - 1 ? gMeme.selectedLineIdx = 0 : gMeme.selectedLineIdx++
 }
 
 function returnDeafultSet() {
