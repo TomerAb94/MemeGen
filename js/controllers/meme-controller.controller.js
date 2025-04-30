@@ -33,6 +33,8 @@ function renderImg(imgId, onImgReady) {
 
 function renderTxt() {
     const meme = getMeme()
+    const spacing = 30;
+    const numLines = meme.lines.length;
 
     meme.lines.forEach((line, index) => {
         gCtx.font = `${line.size}px ${line.font}`
@@ -41,11 +43,23 @@ function renderTxt() {
         const textWidth = gCtx.measureText(line.txt).width;
         const x = (gElCanvas.width - textWidth) / 2;
 
-        const spacing = 30
+        let y;
+        if (index === 0) {
+            // First line at the top
+            y = 50;
+        } else if (index === numLines - 1) {
+            // Last line at the bottom
+            y = gElCanvas.height - 50;
+        } else {
+            // Middle lines spaced evenly
+            const middleSectionTop = 50 + spacing;
+            const middleSectionBottom = gElCanvas.height - 50 - spacing;
+            const middleLinesCount = numLines - 2; // Exclude first and last
+            const middleIndex = index; // Since index 0 is first, index 1 is first middle
+            y = middleSectionTop + (middleIndex * (middleSectionBottom - middleSectionTop)) / (middleLinesCount + 1);
+        }
 
-        const y = (index === 1) ? gElCanvas.height - 50 : ((index * spacing) + 50);
-
-        gCtx.fillText(`${line.txt}`, x, y)
+        gCtx.fillText(`${line.txt}`, x, y);
 
         saveLineLocation(index, x, y)
 
@@ -118,7 +132,7 @@ function onSwitchLine(clickedLineIdx) {
 
 function onLineClick(event) {
     const clickedLineIdx = isLineClicked(event)
-    if (clickedLineIdx===-1) return
+    if (clickedLineIdx === -1) return
 
     onSwitchLine(clickedLineIdx)
 }

@@ -77,16 +77,17 @@ function SetFontSize(value) {
 }
 
 function addLine() {
-    gMeme.lines.push({
+    const newLine = {
         txt: 'TEXT',
         font: 'Arial, Helvetica, sans-serif',
         size: 20,
         color: 'black'
-    })
+    }
+    pushMiddle(gMeme.lines,newLine)
+    
 }
 
 function switchLine(index = -1) {
-    console.log(gMeme.selectedLineIdx);
     if (index !== -1) {
         gMeme.selectedLineIdx = index
         return
@@ -97,6 +98,9 @@ function switchLine(index = -1) {
             gMeme.selectedLineIdx++
         }
     }
+
+    console.log(gMeme.selectedLineIdx);
+    
 }
 
 function saveLineLocation(index, x, y) {
