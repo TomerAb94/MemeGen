@@ -7,6 +7,7 @@ function onInitGallery() {
     returnDeafultSet()
 
     renderGallery()
+
 }
 
 function restoreTxtInput() {

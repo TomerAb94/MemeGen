@@ -2,7 +2,7 @@
 
 var gElCanvas
 var gCtx
-var gImg
+
 
 function onInitGen(imgId) {
     gElCanvas = document.querySelector('canvas')
@@ -47,7 +47,7 @@ function renderTxt() {
 
         gCtx.fillText(`${line.txt}`, x, y)
 
-        saveLineLocation(index,x,y)
+        saveLineLocation(index, x, y)
 
         if (index === meme.selectedLineIdx) drawTxtFrame(line.txt, x, y, line.size)
     })
@@ -66,12 +66,14 @@ function drawTxtFrame(text, x, y, size) {
     gCtx.strokeRect(rectX, rectY, rectWidth, rectHeight)
 }
 
-// function onResize() {
+function onResize() {
 
-//     const elContainer = document.querySelector('.canvas-container')
-//     console.log(elContainer);
-//     gElCanvas.width = elContainer.clientWidth
-// }
+    const elContainer = document.querySelector('.canvas-container')
+    gElCanvas.width = elContainer.clientWidth
+
+    const meme = getMeme()
+    renderMeme(meme.selectedImgId)
+}
 
 function onSetLineTxt(txt) {
     SetLineTxt(txt)
@@ -107,11 +109,44 @@ function onAddLine() {
     renderMeme(meme.selectedImgId)
 }
 
-function onSwitchLine() {
-    switchLine()
+function onSwitchLine(clickedLineIdx) {
+    switchLine(clickedLineIdx)
 
     const meme = getMeme()
     renderMeme(meme.selectedImgId)
+}
+
+function onLineClick(event) {
+    const clickedLineIdx = isLineClicked(event)
+    if (clickedLineIdx===-1) return
+
+    onSwitchLine(clickedLineIdx)
+}
+
+function isLineClicked(ev) {
+    const meme = getMeme()
+
+    const clickedX = ev.offsetX
+    const clickedY = ev.offsetY
+
+    const clickedLineIdx = meme.lines.findIndex((line, index) => {
+        const textWidth = gCtx.measureText(line.txt).width
+        const textHeight = line.size
+
+        const textStartX = line.pos.x
+        const textEndX = textStartX + textWidth
+        const textEndY = line.pos.y
+        const textStartY = textEndY - textHeight
+
+
+        return (
+            clickedX >= textStartX &&
+            clickedX <= textEndX &&
+            clickedY >= textStartY &&
+            clickedY <= textEndY
+        )
+    })
+    return clickedLineIdx
 }
 
 function hideSection(containerName) {

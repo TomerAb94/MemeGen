@@ -85,13 +85,23 @@ function addLine() {
     })
 }
 
-function switchLine() {
-    gMeme.selectedLineIdx === gMeme.lines.length - 1 ? gMeme.selectedLineIdx = 0 : gMeme.selectedLineIdx++
+function switchLine(index = -1) {
+    console.log(gMeme.selectedLineIdx);
+    if (index !== -1) {
+        gMeme.selectedLineIdx = index
+        return
+    } else {
+        if (gMeme.selectedLineIdx === gMeme.lines.length - 1) {
+            gMeme.selectedLineIdx = 0
+        } else {
+            gMeme.selectedLineIdx++
+        }
+    }
 }
 
 function saveLineLocation(index, x, y) {
-    gMeme.lines[index].x = x
-    gMeme.lines[index].y = y
+    const pos = { x, y }
+    gMeme.lines[index].pos = pos
 }
 
 function returnDeafultSet() {

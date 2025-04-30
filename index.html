@@ -29,9 +29,10 @@
 
     <section class="gen-container">
         <div class="canvas-container">
-            <canvas class="meme" width="400" height="400">
-
-            </canvas>
+            <canvas class="meme" width="400" height="400"
+      onclick="onLineClick(event)"
+            
+            ></canvas>
         </div>
         <div class="generator" action="">
             <label for=""><input class="txt-input" oninput="onSetLineTxt(this.value)" type="text"

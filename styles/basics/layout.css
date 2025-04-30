@@ -11,3 +11,7 @@
 .main-layout>.full{
     grid-column: 1/-1;
 }
+
+.canvas-container{
+    width: 80vw;
+}
