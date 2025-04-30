@@ -3,13 +3,13 @@
 }
 
 html{
-    color: var(--clr-primary-base);
+    color: var(--clr-secondery-base);
     font-family: Arial, Helvetica, sans-serif;
 }
 
 body{
     margin: 0;
-    background-color: var(--clr-secondery-base);
+    background-color: var(--clr-primary-base);
 }
 
 li>img{

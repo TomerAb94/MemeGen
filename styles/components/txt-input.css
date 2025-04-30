@@ -1,0 +1,10 @@
+.txt-input {
+    border-radius: 10px;
+    border: 2px solid #4b89ff;
+    background-color: #f0f4ff;
+    padding: 10px 15px;
+    outline: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    color: #333;
+}

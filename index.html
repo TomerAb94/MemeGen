@@ -12,7 +12,7 @@
 <body class="main-layout" onload="onInitGallery()" onresize="onResize()">
     <header class="main-header full flex space-between align-center">
         <div class="logo">
-            <button onclick="toggleMenu()" hidden type="button" class="btn-toggle-menu">☰</button>MEMEGEN
+            <button onclick="toggleMenu()" hidden type="button" class="btn-toggle-menu">☰</button>MEME<span>G</span>EN
         </div>
         <nav class="main-nav">
             <ul class="main-nav-list clean-list flex">
@@ -27,22 +27,30 @@
         </ul>
     </section>
 
-    <section class="gen-container">
+    <section class="gen-container flex flex-column alig">
         <div class="canvas-container">
-            <canvas class="meme" width="400" height="400"
-      onclick="onLineClick(event)"
-            
-            ></canvas>
+            <canvas class="meme" width="400" height="400" onclick="onLineClick(event)"></canvas>
         </div>
         <div class="generator" action="">
+
             <label for=""><input class="txt-input" oninput="onSetLineTxt(this.value)" type="text"
                     placeholder="text"></label>
-            <label for=""><input oninput="onSetLineColor(this.value)" type="color"></label>
-            <button onclick="onSetFontSize(2)" class="increase-font-btn">+</button>
-            <button onclick="onSetFontSize(-2)" class="decrease-font-btn">-</button>
-            <button onclick="onAddLine()" class="add-line-btn">Add Line</button>
-            <button onclick="onSwitchLine()" class="switch-line-btn">Switch Line</button>
-            <a href="#" onclick="onDownloadCanvas(this)" download="file-name">Download</a>
+
+            <div class="line-gen">
+                <button onclick="onSwitchLine()" class="switch-line-btn">Switch Line</button>
+                <button onclick="onAddLine()" class="add-line-btn">Add Line</button>
+            </div>
+
+            <div class="text-gen">
+                <button onclick="onSetFontSize(2)" class="increase-font-btn">+</button>
+                <button onclick="onSetFontSize(-2)" class="decrease-font-btn">-</button>
+                <label for=""><input oninput="onSetLineColor(this.value)" type="color"></label>
+            </div>
+
+            <div class="download">
+                <a href="#" onclick="onDownloadCanvas(this)" download="file-name">Download</a>
+            </div>
+
         </div>
     </section>
 

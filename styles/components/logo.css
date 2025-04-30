@@ -2,3 +2,7 @@
     font-size: 2em;
     font-weight: bold;
 }
+
+.logo span{
+    color: var(--clr-primary-1);
+}

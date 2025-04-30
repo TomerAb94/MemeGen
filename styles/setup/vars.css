@@ -2,10 +2,14 @@
 
 :root {
     /* primary color shades of gray */
-    --clr-primary-base: #47474f;
-    
+    --clr-primary-base: #00CED1;
+    --clr-primary--1: #071426;
+    --clr-primary-1: #07fc03;
+
     /* secondery color */
-    --clr-secondery-base: #f5f5fa;
+    --clr-secondery-base: #FFFFFF;
+    --clr-secondery-1: #9b9898;
+    --clr-secondery--2: #152d4d;
 
     /* hover color */
 
