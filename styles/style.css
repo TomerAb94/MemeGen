@@ -17,6 +17,7 @@
 @import url('components/font-gen.css');
 @import url('components/download-gen.css');
 @import url('components/txt-input.css');
+@import url('components/font-input.css');
 
 /* MQ */
 @import url('setup/mq.css');

@@ -31,25 +31,46 @@
         </div>
         <div class="generator" action="">
 
-            <label class="flex justify-center align-center" for=""><input class="txt-input" oninput="onSetLineTxt(this.value)" type="text"
-                    placeholder="text"></label>
+            <label class="flex justify-center align-center" for=""><input class="txt-input"
+                    oninput="onSetLineTxt(this.value)" type="text" placeholder="text"></label>
 
             <div class="line-gen flex justify-center align-center">
                 <button onclick="onSwitchLine()" class="switch-line-btn"><i
                         class="fa-solid fa-arrows-up-down"></i></button>
                 <button onclick="onAddLine()" class="add-line-btn"><i class="fa-solid fa-plus"></i></button>
+                <button onclick="onRemoveLine()" class="remove-line-btn"><i class="fa-solid fa-trash"></i></button>
             </div>
 
             <div class="font-gen flex justify-center align-center">
                 <button onclick="onSetFontSize(2)" class="increase-font-btn"><i class="fa-solid fa-font"></i></button>
                 <button onclick="onSetFontSize(-2)" class="decrease-font-btn"><i class="fa-solid fa-font"></i></button>
-                <button onclick="document.getElementById('colorPicker').click()" class="color-btn"><i class="fa-solid fa-palette"></i></button>
+                <button onclick="onAlignText('left')" class="align-text-btn"><i class="fa-solid fa-align-left"></i></button>
+                <button onclick="onAlignText('center')" class="align-text-btn"><i class="fa-solid fa-align-center"></i></button>
+                <button onclick="onAlignText('right')" class="align-text-btn"><i class="fa-solid fa-align-right"></i></button>
+                <label for="fontSelect">
+                    <select id="fontSelect" class="font-input" onchange="onSetFontFamily(this.value)">
+                        <option value="" disabled selected>Choose font</option>
+                        <option value="Arial" data-font-family="Arial, Helvetica, sans-serif">Arial</option>
+                        <option value="Impact" data-font-family="Impact, Charcoal, sans-serif">Impact</option>
+                        <option value="Comic Sans" data-font-family="Comic Sans MS, cursive, sans-serif">Comic Sans
+                        </option>
+                        <option value="Times New Roman" data-font-family="Times New Roman, Times, serif">Times New Roman
+                        </option>
+                        <option value="Courier New" data-font-family="Courier New, Courier, monospace">Courier New
+                        </option>
+                        <option value="Verdana" data-font-family="Verdana, Geneva, sans-serif">Verdana</option>
+                        <option value="Georgia" data-font-family="Georgia, Times, serif">Georgia</option>
+                    </select>
+                </label>
+                <button onclick="document.getElementById('colorPicker').click()" class="color-btn"><i
+                        class="fa-solid fa-palette"></i></button>
                 <input id="colorPicker" oninput="onSetLineColor(this.value)" class="hidden" type="color">
             </div>
 
             <div class="download-gen flex justify-center">
-                <a class="button download-btn" href="#" onclick="onDownloadCanvas(this)" download="file-name"><i class="fa-solid fa-download"></i>Download</a>
-            </div> 
+                <a class="button download-btn" href="#" onclick="onDownloadCanvas(this)" download="file-name"><i
+                        class="fa-solid fa-download"></i>Download</a>
+            </div>
 
         </div>
     </section>

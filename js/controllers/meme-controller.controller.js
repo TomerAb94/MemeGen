@@ -33,6 +33,7 @@ function renderImg(imgId, onImgReady) {
 
 function renderTxt() {
     const meme = getMeme()
+    
     const spacing = 30;
     const numLines = meme.lines.length;
 
@@ -127,7 +128,12 @@ function onSwitchLine(clickedLineIdx) {
     switchLine(clickedLineIdx)
 
     const meme = getMeme()
+    initTextInput(meme.lines[meme.selectedLineIdx].txt)
     renderMeme(meme.selectedImgId)
+}
+
+function initTextInput(txt) {
+    document.querySelector('.txt-input').value = txt
 }
 
 function onLineClick(event) {
@@ -161,6 +167,13 @@ function isLineClicked(ev) {
         )
     })
     return clickedLineIdx
+}
+
+function onRemoveLine(){
+    removeLine()
+
+    const meme=getMeme()
+    renderMeme(meme.selectedImgId)
 }
 
 function hideSection(containerName) {

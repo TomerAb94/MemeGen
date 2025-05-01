@@ -1,4 +1,8 @@
-.font-gen{
+.font-gen {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: repeat(5, 40px);
+
     background-color: rgb(200, 200, 201);
     border-radius: 10px;
     height: fit-content;

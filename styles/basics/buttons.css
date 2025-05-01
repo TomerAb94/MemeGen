@@ -30,17 +30,28 @@ button:hover,
     color: white;
 }
 
+.remove-line-btn{
+    background-color: rgb(204, 36, 36);
+    color: white;
+}
+
 .increase-font-btn {
     background-color: #f0e9e9;
+    grid-row: 1; 
+    grid-column: 1;
 }
 
 .decrease-font-btn {
     background-color: #f0e9e9;
     font-size: 0.7em;
+    grid-row: 1;
+    grid-column: 2;
 }
 
 .color-btn {
     background-color: #f0e9e9;
+    grid-row: 2;
+    grid-column: 5;
 }
 
 .download-btn {
@@ -49,4 +60,19 @@ button:hover,
     width: fit-content;
     padding: 3px 15px 3px 15px;
     gap: 5px;
+}
+
+.align-text-btn{
+    grid-row: 1;
+    background-color: #f0e9e9;
+}
+
+.align-text-btn:nth-child(3) {
+    grid-column: 3;
+}
+.align-text-btn:nth-child(4) {
+    grid-column: 4;
+}
+.align-text-btn:nth-child(5) {
+    grid-column: 5;
 }

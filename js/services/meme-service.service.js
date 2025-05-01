@@ -98,9 +98,15 @@ function switchLine(index = -1) {
             gMeme.selectedLineIdx++
         }
     }
+    
+}
 
+function removeLine(){
     console.log(gMeme.selectedLineIdx);
     
+    gMeme.lines.splice(gMeme.selectedLineIdx,1)
+    
+    switchLine()
 }
 
 function saveLineLocation(index, x, y) {
