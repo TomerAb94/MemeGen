@@ -11,9 +11,7 @@
 
 <body class="main-layout" onload="onInitGallery()" onresize="onResize()">
     <header class="main-header full flex space-between align-center">
-        <div class="logo">
-            <button onclick="toggleMenu()" hidden type="button" class="btn-toggle-menu">☰</button>MEME<span>G</span>EN
-        </div>
+        <div class="logo"> MEME<span>G</span>EN</div>
         <nav class="main-nav">
             <ul class="main-nav-list clean-list flex">
                 <li onclick="onInitGallery()"><a href="#"></a>Gallery</li>
@@ -33,23 +31,25 @@
         </div>
         <div class="generator" action="">
 
-            <label for=""><input class="txt-input" oninput="onSetLineTxt(this.value)" type="text"
+            <label class="flex justify-center align-center" for=""><input class="txt-input" oninput="onSetLineTxt(this.value)" type="text"
                     placeholder="text"></label>
 
-            <div class="line-gen">
-                <button onclick="onSwitchLine()" class="switch-line-btn">Switch Line</button>
-                <button onclick="onAddLine()" class="add-line-btn">Add Line</button>
+            <div class="line-gen flex justify-center align-center">
+                <button onclick="onSwitchLine()" class="switch-line-btn"><i
+                        class="fa-solid fa-arrows-up-down"></i></button>
+                <button onclick="onAddLine()" class="add-line-btn"><i class="fa-solid fa-plus"></i></button>
             </div>
 
-            <div class="text-gen">
-                <button onclick="onSetFontSize(2)" class="increase-font-btn">+</button>
-                <button onclick="onSetFontSize(-2)" class="decrease-font-btn">-</button>
-                <label for=""><input oninput="onSetLineColor(this.value)" type="color"></label>
+            <div class="font-gen flex justify-center align-center">
+                <button onclick="onSetFontSize(2)" class="increase-font-btn"><i class="fa-solid fa-font"></i></button>
+                <button onclick="onSetFontSize(-2)" class="decrease-font-btn"><i class="fa-solid fa-font"></i></button>
+                <button onclick="document.getElementById('colorPicker').click()" class="color-btn"><i class="fa-solid fa-palette"></i></button>
+                <input id="colorPicker" oninput="onSetLineColor(this.value)" class="hidden" type="color">
             </div>
 
-            <div class="download">
-                <a href="#" onclick="onDownloadCanvas(this)" download="file-name">Download</a>
-            </div>
+            <div class="download-gen flex justify-center">
+                <a class="button download-btn" href="#" onclick="onDownloadCanvas(this)" download="file-name"><i class="fa-solid fa-download"></i>Download</a>
+            </div> 
 
         </div>
     </section>

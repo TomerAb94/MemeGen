@@ -8,7 +8,7 @@ function onInitGen(imgId) {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
 
-    // onResize()
+    onResize()
     renderMeme(+imgId)
 
     hideSection('.gallery-container')

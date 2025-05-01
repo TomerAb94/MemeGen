@@ -29,7 +29,7 @@ var gImgs = [
 ]
 
 var gMeme = {
-    selectedImgId: null,
+    selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [
         {

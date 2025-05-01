@@ -12,3 +12,6 @@
     grid-column: 1/-1;
 }
 
+.canvas-container{
+    width: 50vw;
+}
