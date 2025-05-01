@@ -91,21 +91,28 @@ function onResize() {
 }
 
 function onSetLineTxt(txt) {
-    SetLineTxt(txt)
+    setLineTxt(txt)
 
     const meme = getMeme()
     renderMeme(meme.selectedImgId)
 }
 
 function onSetLineColor(color) {
-    SetLineColor(color)
+    setLineColor(color)
 
     const meme = getMeme()
     renderMeme(meme.selectedImgId)
 }
 
-function onSetFontSize(value) {
-    SetFontSize(value)
+function onSetFontSize(diff) {
+    setFontSize(diff)
+
+    const meme = getMeme()
+    renderMeme(meme.selectedImgId)
+}
+
+function onSetFontFamily(fontFamily){
+    setFontFamily(fontFamily)
 
     const meme = getMeme()
     renderMeme(meme.selectedImgId)

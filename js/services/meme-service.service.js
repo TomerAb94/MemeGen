@@ -64,16 +64,20 @@ function getMeme() {
     return gMeme
 }
 
-function SetLineTxt(txt) {
+function setLineTxt(txt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
 
-function SetLineColor(color) {
+function setLineColor(color) {
     gMeme.lines[gMeme.selectedLineIdx].color = color
 }
 
-function SetFontSize(value) {
-    gMeme.lines[gMeme.selectedLineIdx].size += value
+function setFontSize(diff) {
+    gMeme.lines[gMeme.selectedLineIdx].size += diff
+}
+
+function setFontFamily(fontFamily) {
+    gMeme.lines[gMeme.selectedLineIdx].font = fontFamily
 }
 
 function addLine() {
