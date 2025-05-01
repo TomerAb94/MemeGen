@@ -1,3 +1,52 @@
-button{
+button,
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     cursor: pointer;
+    border: none;
+    background: none;
+
+    width: 35px;
+    height: 35px;
+    border-radius: 10px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    font-size: 1.2em;
+}
+
+button:hover,
+.button:hover {
+    transform: scale(1.05)
+}
+
+.switch-line-btn {
+    background-color: #4d98ed;
+    color: white;
+}
+
+.add-line-btn {
+    background-color: #5ab65a;
+    color: white;
+}
+
+.increase-font-btn {
+    background-color: #f0e9e9;
+}
+
+.decrease-font-btn {
+    background-color: #f0e9e9;
+    font-size: 0.7em;
+}
+
+.color-btn {
+    background-color: #f0e9e9;
+}
+
+.download-btn {
+    background-color: rgb(140, 30, 140);
+    font-size: 0.9em;
+    width: fit-content;
+    padding: 3px 15px 3px 15px;
+    gap: 5px;
 }

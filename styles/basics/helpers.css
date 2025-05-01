@@ -33,3 +33,11 @@
 .hide{
     display: none;
 }
+
+.gap10{
+    gap: 10px;
+}
+
+.hidden{
+    display: none;
+}

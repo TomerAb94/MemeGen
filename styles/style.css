@@ -13,6 +13,9 @@
 @import url('components/main-nav-list.css');
 @import url('components/gen-container.css');
 @import url('components/generator.css');
+@import url('components/line-gen.css');
+@import url('components/font-gen.css');
+@import url('components/download-gen.css');
 @import url('components/txt-input.css');
 
 /* MQ */

@@ -1,7 +1,8 @@
 
 .generator{
     display: grid;
-    gap: 10px;
     padding: 10px;
+    background-color: rgb(170, 176, 174);
+    border-radius: 10px;
 }
 

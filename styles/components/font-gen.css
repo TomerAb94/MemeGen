@@ -1,0 +1,8 @@
+.font-gen{
+    background-color: rgb(200, 200, 201);
+    border-radius: 10px;
+    height: fit-content;
+    align-self: center;
+    padding: 5px;
+    gap: 10px;
+}
