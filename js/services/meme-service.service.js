@@ -36,13 +36,15 @@ var gMeme = {
             txt: 'TEXT',
             font: 'Arial, Helvetica, sans-serif',
             size: 20,
-            color: 'black'
+            color: 'black',
+            align: 'center'
         },
         {
             txt: 'TEXT',
             font: 'Arial, Helvetica, sans-serif',
             size: 20,
-            color: 'black'
+            color: 'black',
+            align: 'center'
         },
     ]
 }
@@ -80,6 +82,10 @@ function setFontFamily(fontFamily) {
     gMeme.lines[gMeme.selectedLineIdx].font = fontFamily
 }
 
+function alignText(align){
+    gMeme.lines[gMeme.selectedLineIdx].align = align
+}
+
 function addLine() {
     const newLine = {
         txt: 'TEXT',
@@ -87,8 +93,8 @@ function addLine() {
         size: 20,
         color: 'black'
     }
-    pushMiddle(gMeme.lines,newLine)
-    
+    pushMiddle(gMeme.lines, newLine)
+
 }
 
 function switchLine(index = -1) {
@@ -102,14 +108,14 @@ function switchLine(index = -1) {
             gMeme.selectedLineIdx++
         }
     }
-    
+
 }
 
-function removeLine(){
+function removeLine() {
     console.log(gMeme.selectedLineIdx);
-    
-    gMeme.lines.splice(gMeme.selectedLineIdx,1)
-    
+
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+
     switchLine()
 }
 
@@ -125,13 +131,15 @@ function returnDeafultSet() {
                 txt: 'TEXT',
                 font: 'Arial, Helvetica, sans-serif',
                 size: 20,
-                color: 'black'
+                color: 'black',
+                align: 'center'
             },
             {
                 txt: 'TEXT',
                 font: 'Arial, Helvetica, sans-serif',
                 size: 20,
-                color: 'black'
+                color: 'black',
+                align: 'center'
             }
         ]
 }

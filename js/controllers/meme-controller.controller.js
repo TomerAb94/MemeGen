@@ -33,7 +33,7 @@ function renderImg(imgId, onImgReady) {
 
 function renderTxt() {
     const meme = getMeme()
-    
+
     const spacing = 30;
     const numLines = meme.lines.length;
 
@@ -42,7 +42,10 @@ function renderTxt() {
         gCtx.fillStyle = `${line.color}`
 
         const textWidth = gCtx.measureText(line.txt).width;
-        const x = (gElCanvas.width - textWidth) / 2;
+
+        var x = (gElCanvas.width - textWidth) / 2;
+        if (line.align === 'left') x = spacing
+        if (line.align === 'right') x = gElCanvas.width - spacing
 
         let y;
         if (index === 0) {
@@ -111,8 +114,15 @@ function onSetFontSize(diff) {
     renderMeme(meme.selectedImgId)
 }
 
-function onSetFontFamily(fontFamily){
+function onSetFontFamily(fontFamily) {
     setFontFamily(fontFamily)
+
+    const meme = getMeme()
+    renderMeme(meme.selectedImgId)
+}
+
+function onAlignText(align) {
+    alignText(align)
 
     const meme = getMeme()
     renderMeme(meme.selectedImgId)
@@ -176,10 +186,10 @@ function isLineClicked(ev) {
     return clickedLineIdx
 }
 
-function onRemoveLine(){
+function onRemoveLine() {
     removeLine()
 
-    const meme=getMeme()
+    const meme = getMeme()
     renderMeme(meme.selectedImgId)
 }
 
