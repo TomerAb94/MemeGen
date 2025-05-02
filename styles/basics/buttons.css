@@ -21,28 +21,28 @@ button:hover,
 }
 
 .switch-line-btn {
-    background-color: #4d98ed;
-    color: white;
+    background-color: var(--clr-switch-btn);
+    color: var(--clr-text-btn);
 }
 
 .add-line-btn {
-    background-color: #5ab65a;
-    color: white;
+    background-color: var(--clr-add-btn);
+    color: var(--clr-text-btn);
 }
 
 .remove-line-btn {
-    background-color: rgb(204, 36, 36);
-    color: white;
+    background-color: var(--clr-delete-btn);
+    color: var(--clr-text-btn);
 }
 
 .increase-font-btn {
-    background-color: #f0e9e9;
+    background-color: var(--clr-font-btn);
     grid-row: 1;
     grid-column: 1;
 }
 
 .decrease-font-btn {
-    background-color: #f0e9e9;
+    background-color: var(--clr-font-btn);
     font-size: 0.7em;
     grid-row: 1;
     grid-column: 2;
@@ -50,7 +50,7 @@ button:hover,
 
 .color-btn {
     position: relative;
-    background-color: #f0e9e9;
+    background-color: var(--clr-font-btn);
     grid-row: 2;
     grid-column: 5;
 }
@@ -58,14 +58,15 @@ button:hover,
 .color-btn>.hidden {
     position: absolute;
     display: block;
-    bottom: 0; 
+    bottom: 0;
     left: 0;
-    opacity: 0; 
+    opacity: 0;
     cursor: pointer;
 }
 
 .download-btn {
-    background-color: rgb(140, 30, 140);
+    background-color: var(--clr-download-btn);
+    color: var(--clr-text-btn);
     font-size: 0.9em;
     width: fit-content;
     padding: 3px 15px 3px 15px;
@@ -74,7 +75,7 @@ button:hover,
 
 .align-text-btn {
     grid-row: 1;
-    background-color: #f0e9e9;
+    background-color: var(--clr-font-btn);
 }
 
 .align-text-btn:nth-child(3) {

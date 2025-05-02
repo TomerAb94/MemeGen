@@ -4,14 +4,22 @@
     /* primary color shades of gray */
     --clr-primary-base: #00CED1;
     --clr-primary--1: #071426;
-    --clr-primary-1: #07fc03;
-
+    
     /* secondery color */
     --clr-secondery-base: #FFFFFF;
     --clr-secondery-1: #9b9898;
     --clr-secondery--2: #152d4d;
+    
+    /* logo */
+    --clr-logo-1: #a600ff;
 
-    /* hover color */
+    /* buttons */
+    --clr-switch-btn: #4d98ed;
+    --clr-add-btn: #5ab65a;
+    --clr-delete-btn: #cc2424;
+    --clr-font-btn: #f0e9e9;
+    --clr-download-btn: #8c1e8c;
+    --clr-text-btn:white;
 
     /* breakpoint vars */
     --l: 1060px;

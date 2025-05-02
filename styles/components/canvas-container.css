@@ -1,0 +1,5 @@
+.canvas-container{
+    position: relative;
+    width: 50vw;
+    max-width: 400px;
+}
