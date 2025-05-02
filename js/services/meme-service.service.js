@@ -94,7 +94,7 @@ function addLine() {
         size: 20,
         color: 'black'
     }
-    pushMiddle(gMeme.lines, newLine)
+    gMeme.lines.push(newLine)
 
 }
 
@@ -109,15 +109,15 @@ function switchLine(index = -1) {
             gMeme.selectedLineIdx++
         }
     }
-
 }
 
 function removeLine() {
-    console.log(gMeme.selectedLineIdx);
-
+    if(gMeme.lines.length<1)return
+    
     gMeme.lines.splice(gMeme.selectedLineIdx, 1)
-
-    switchLine()
+    gMeme.selectedLineIdx=gMeme.lines.length-1
+    
+    switchLine(gMeme.lines.length-1)
 }
 
 function saveLineLocation(index, x, y) {

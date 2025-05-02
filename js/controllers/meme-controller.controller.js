@@ -33,9 +33,13 @@ function renderImg(imgId, onImgReady) {
 
 function renderText() {
     const meme = getMeme()
-
+    console.log(meme.lines.length);
+    if (meme.lines.length < 1){
+        removeTextFrame()
+        return
+    } 
+    
     const spacing = 30;
-    const numLines = meme.lines.length;
 
     meme.lines.forEach((line, index) => {
         gCtx.font = `${line.size}px ${line.font}`
@@ -44,23 +48,15 @@ function renderText() {
         const textWidth = gCtx.measureText(line.text).width;
 
         var x = (gElCanvas.width - textWidth) / 2;
+        var y = 50
         if (line.align === 'left') x = spacing
         if (line.align === 'right') x = gElCanvas.width - spacing
 
-        let y;
-        if (index === 0) {
-            // First line at the top
-            y = 50;
-        } else if (index === numLines - 1) {
-            // Last line at the bottom
-            y = gElCanvas.height - 50;
-        } else {
-            // Middle lines spaced evenly
-            const middleSectionTop = 50 + spacing;
-            const middleSectionBottom = gElCanvas.height - 50 - spacing;
-            const middleLinesCount = numLines - 2; // Exclude first and last
-            const middleIndex = index; // Since index 0 is first, index 1 is first middle
-            y = middleSectionTop + (middleIndex * (middleSectionBottom - middleSectionTop)) / (middleLinesCount + 1);
+        if (index === 1) {
+            // second line at the bottom
+            y = gElCanvas.height - 30;
+        } else if (index > 1) {
+            y += spacing * (index - 1)
         }
 
         gCtx.fillText(`${line.text}`, x, y);
@@ -73,7 +69,7 @@ function renderText() {
 }
 
 function addTextFrame(text, x, y, size) {
-    const elTextWrap = document.querySelector('.text-wrap')
+    const elTextFrame = document.querySelector('.text-frame')
 
     const [xPad, yPad] = [20, 5]
     const textMetrics = gCtx.measureText(text)
@@ -84,15 +80,19 @@ function addTextFrame(text, x, y, size) {
         y: y + yPad + 2 - (size + 2 * yPad)
     }
 
-    const { left, top } = document.querySelector('.meme').getBoundingClientRect(); //to extract (0,0) of canvas from viewport
-    const [scrollX, scrollY] = [window.scrollX || window.pageXOffset, window.scrollY || window.pageYOffset]; //if user scrolls the page
+    const { left, top } = document.querySelector('.meme').getBoundingClientRect() //to extract (0,0) of canvas from viewport
+    const [scrollX, scrollY] = [window.scrollX || window.pageXOffset, window.scrollY || window.pageYOffset] //if user scrolls the page
 
-    // Apply styles to .text-wrap
-    elTextWrap.style.left = `${left + rect.x + scrollX}px`;
-    elTextWrap.style.top = `${top + rect.y + scrollY}px`;
-    elTextWrap.style.width = `${rect.width}px`;
-    elTextWrap.style.height = `${rect.height}px`;
-    elTextWrap.style.display = 'block';
+    // Apply styles to .text-frame
+    elTextFrame.style.left = `${left + rect.x + scrollX}px`
+    elTextFrame.style.top = `${top + rect.y + scrollY}px`
+    elTextFrame.style.width = `${rect.width}px`
+    elTextFrame.style.height = `${rect.height}px`
+    elTextFrame.style.display = 'block'
+}
+
+function removeTextFrame(){
+    document.querySelector('.text-frame').style.display = 'none'
 }
 
 function onResize() {
