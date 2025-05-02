@@ -29,10 +29,11 @@
         <div class="canvas-container">
             <canvas class="meme" width="400" height="400" onclick="onLineClick(event)"></canvas>
         </div>
+        <div class="text-wrap"></div>
         <div class="generator" action="">
 
-            <label class="flex justify-center align-center" for=""><input class="txt-input"
-                    oninput="onSetLineTxt(this.value)" type="text" placeholder="text"></label>
+            <label class="flex justify-center align-center" for=""><input class="text-input"
+                    oninput="onSetLineText(this.value)" type="text" placeholder="text"></label>
 
             <div class="line-gen flex justify-center align-center">
                 <button onclick="onSwitchLine()" class="switch-line-btn"><i

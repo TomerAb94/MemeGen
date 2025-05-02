@@ -3,15 +3,15 @@
 function onInitGallery() {
     displaySection('.gallery-container')
     hideSection('.gen-container')
-    restoreTxtInput()
+    restoreTextInput()
     returnDeafultSet()
 
     renderGallery()
 
 }
 
-function restoreTxtInput() {
-    document.querySelector('.txt-input').value = ''
+function restoreTextInput() {
+    document.querySelector('.text-input').value = ''
 }
 
 function renderGallery() {

@@ -16,7 +16,7 @@ function onInitGen(imgId) {
 }
 
 function renderMeme(imgId) {
-    renderImg(imgId, renderTxt)
+    renderImg(imgId, renderText)
 }
 
 function renderImg(imgId, onImgReady) {
@@ -31,7 +31,7 @@ function renderImg(imgId, onImgReady) {
     }
 }
 
-function renderTxt() {
+function renderText() {
     const meme = getMeme()
 
     const spacing = 30;
@@ -41,7 +41,7 @@ function renderTxt() {
         gCtx.font = `${line.size}px ${line.font}`
         gCtx.fillStyle = `${line.color}`
 
-        const textWidth = gCtx.measureText(line.txt).width;
+        const textWidth = gCtx.measureText(line.text).width;
 
         var x = (gElCanvas.width - textWidth) / 2;
         if (line.align === 'left') x = spacing
@@ -63,25 +63,36 @@ function renderTxt() {
             y = middleSectionTop + (middleIndex * (middleSectionBottom - middleSectionTop)) / (middleLinesCount + 1);
         }
 
-        gCtx.fillText(`${line.txt}`, x, y);
+        gCtx.fillText(`${line.text}`, x, y);
 
         saveLineLocation(index, x, y)
 
-        if (index === meme.selectedLineIdx) drawTxtFrame(line.txt, x, y, line.size)
+        if (index === meme.selectedLineIdx) addTextFrame(line.text, x, y, line.size)
     })
 
 }
 
-function drawTxtFrame(text, x, y, size) {
+function addTextFrame(text, x, y, size) {
+    const elTextWrap = document.querySelector('.text-wrap')
 
+    const [xPad, yPad] = [20, 5]
     const textMetrics = gCtx.measureText(text)
-    const rectWidth = textMetrics.width
-    const rectHeight = size
-    const rectX = x
-    const rectY = y - rectHeight
+    const rect = {
+        width: textMetrics.width + 2 * xPad,
+        height: size + 2 * yPad,
+        x: x - xPad,
+        y: y + yPad + 2 - (size + 2 * yPad)
+    }
 
+    const { left, top } = document.querySelector('.meme').getBoundingClientRect(); //to extract (0,0) of canvas from viewport
+    const [scrollX, scrollY] = [window.scrollX || window.pageXOffset, window.scrollY || window.pageYOffset]; //if user scrolls the page
 
-    gCtx.strokeRect(rectX, rectY, rectWidth, rectHeight)
+    // Apply styles to .text-wrap
+    elTextWrap.style.left = `${left + rect.x + scrollX}px`;
+    elTextWrap.style.top = `${top + rect.y + scrollY}px`;
+    elTextWrap.style.width = `${rect.width}px`;
+    elTextWrap.style.height = `${rect.height}px`;
+    elTextWrap.style.display = 'block';
 }
 
 function onResize() {
@@ -93,8 +104,8 @@ function onResize() {
     renderMeme(meme.selectedImgId)
 }
 
-function onSetLineTxt(txt) {
-    setLineTxt(txt)
+function onSetLineText(text) {
+    setLineText(text)
 
     const meme = getMeme()
     renderMeme(meme.selectedImgId)
@@ -145,12 +156,12 @@ function onSwitchLine(clickedLineIdx) {
     switchLine(clickedLineIdx)
 
     const meme = getMeme()
-    initTextInput(meme.lines[meme.selectedLineIdx].txt)
+    initTextInput(meme.lines[meme.selectedLineIdx].text)
     renderMeme(meme.selectedImgId)
 }
 
-function initTextInput(txt) {
-    document.querySelector('.txt-input').value = txt
+function initTextInput(text) {
+    document.querySelector('.text-input').value = text
 }
 
 function onLineClick(event) {
@@ -167,7 +178,7 @@ function isLineClicked(ev) {
     const clickedY = ev.offsetY
 
     const clickedLineIdx = meme.lines.findIndex((line, index) => {
-        const textWidth = gCtx.measureText(line.txt).width
+        const textWidth = gCtx.measureText(line.text).width
         const textHeight = line.size
 
         const textStartX = line.pos.x

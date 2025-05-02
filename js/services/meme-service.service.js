@@ -33,14 +33,14 @@ var gMeme = {
     selectedLineIdx: 0,
     lines: [
         {
-            txt: 'TEXT',
+            text: 'TEXT',
             font: 'Arial, Helvetica, sans-serif',
             size: 20,
             color: 'black',
             align: 'center'
         },
         {
-            txt: 'TEXT',
+            text: 'TEXT',
             font: 'Arial, Helvetica, sans-serif',
             size: 20,
             color: 'black',
@@ -66,8 +66,8 @@ function getMeme() {
     return gMeme
 }
 
-function setLineTxt(txt) {
-    gMeme.lines[gMeme.selectedLineIdx].txt = txt
+function setLineText(text) {
+    gMeme.lines[gMeme.selectedLineIdx].text = text
 }
 
 function setLineColor(color) {
@@ -75,6 +75,7 @@ function setLineColor(color) {
 }
 
 function setFontSize(diff) {
+    if (diff < 0 && gMeme.lines[gMeme.selectedLineIdx].size<=6) return
     gMeme.lines[gMeme.selectedLineIdx].size += diff
 }
 
@@ -82,13 +83,13 @@ function setFontFamily(fontFamily) {
     gMeme.lines[gMeme.selectedLineIdx].font = fontFamily
 }
 
-function alignText(align){
+function alignText(align) {
     gMeme.lines[gMeme.selectedLineIdx].align = align
 }
 
 function addLine() {
     const newLine = {
-        txt: 'TEXT',
+        text: 'TEXT',
         font: 'Arial, Helvetica, sans-serif',
         size: 20,
         color: 'black'
@@ -128,14 +129,14 @@ function returnDeafultSet() {
     gMeme.selectedLineIdx = 0,
         gMeme.lines = [
             {
-                txt: 'TEXT',
+                text: 'TEXT',
                 font: 'Arial, Helvetica, sans-serif',
                 size: 20,
                 color: 'black',
                 align: 'center'
             },
             {
-                txt: 'TEXT',
+                text: 'TEXT',
                 font: 'Arial, Helvetica, sans-serif',
                 size: 20,
                 color: 'black',
