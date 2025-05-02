@@ -1,6 +1,7 @@
 
 .gen-container{
     display: grid;
+    justify-self: center;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     padding: 20px;
@@ -8,4 +9,5 @@
     background-color: var(--clr-secondery-1);
     border: 1px solid rgb(100, 92, 92);
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    max-width: fit-content;
 }

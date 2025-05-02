@@ -25,7 +25,7 @@
         </ul>
     </section>
 
-    <section class="gen-container flex flex-column alig">
+    <section class="gen-container flex flex-column">
         <div class="canvas-container">
             <canvas class="meme" width="400" height="400" onclick="onLineClick(event)"></canvas>
         </div>
@@ -44,9 +44,12 @@
             <div class="font-gen flex justify-center align-center">
                 <button onclick="onSetFontSize(2)" class="increase-font-btn"><i class="fa-solid fa-font"></i></button>
                 <button onclick="onSetFontSize(-2)" class="decrease-font-btn"><i class="fa-solid fa-font"></i></button>
-                <button onclick="onAlignText('left')" class="align-text-btn"><i class="fa-solid fa-align-left"></i></button>
-                <button onclick="onAlignText('center')" class="align-text-btn"><i class="fa-solid fa-align-center"></i></button>
-                <button onclick="onAlignText('right')" class="align-text-btn"><i class="fa-solid fa-align-right"></i></button>
+                <button onclick="onAlignText('left')" class="align-text-btn"><i
+                        class="fa-solid fa-align-left"></i></button>
+                <button onclick="onAlignText('center')" class="align-text-btn"><i
+                        class="fa-solid fa-align-center"></i></button>
+                <button onclick="onAlignText('right')" class="align-text-btn"><i
+                        class="fa-solid fa-align-right"></i></button>
                 <label for="fontSelect">
                     <select id="fontSelect" class="font-input" onchange="onSetFontFamily(this.value)">
                         <option value="" disabled selected>Choose font</option>
@@ -63,8 +66,9 @@
                     </select>
                 </label>
                 <button onclick="document.getElementById('colorPicker').click()" class="color-btn"><i
-                        class="fa-solid fa-palette"></i></button>
-                <input id="colorPicker" oninput="onSetLineColor(this.value)" class="hidden" type="color">
+                        class="fa-solid fa-palette"></i>
+                    <input id="colorPicker" oninput="onSetLineColor(this.value)" class="hidden" type="color">
+                </button>
             </div>
 
             <div class="download-gen flex justify-center">

@@ -14,4 +14,5 @@
 
 .canvas-container{
     width: 50vw;
+    max-width: 400px;
 }
