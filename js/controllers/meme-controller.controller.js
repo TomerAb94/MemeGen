@@ -3,7 +3,6 @@
 var gElCanvas
 var gCtx
 
-
 function onInitGen(imgId) {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
@@ -34,12 +33,6 @@ function renderImg(imgId, onImgReady) {
 
 function renderText() {
     const meme = getMeme()
-
-    if (meme.lines.length < 1) {
-        removeTextFrame()
-        return
-    }
-
     const spacing = 30;
 
     meme.lines.forEach((line, index) => {
@@ -64,33 +57,22 @@ function renderText() {
 
         saveLineLocation(index, x, y)
 
-        if (index === meme.selectedLineIdx) addTextFrame(line.text, x, y, line.size)
+        if (index === meme.selectedLineIdx) drawTextFrame(line.text, x, y, line.size)
     })
 
 }
 
-function addTextFrame(text, x, y, size) {
-    const elTextFrame = document.querySelector('.text-frame');
+function drawTextFrame(text, x, y, size) {
+    const textMetrics = gCtx.measureText(text)
+    const rectWidth = textMetrics.width
+    const rectHeight = size
+    const rectX = x
+    const rectY = y - rectHeight
 
-    const padding = 20
-    const width = gCtx.measureText(text).width + padding * 2
-    const height = size + padding / 4
 
-    const { left, top } = document.querySelector('.meme').getBoundingClientRect();
-
-    const frameX = left + x - padding
-    const frameY = top + y - size
-
-    elTextFrame.style.left = `${frameX}px`
-    elTextFrame.style.top = `${frameY}px`
-    elTextFrame.style.width = `${width}px`
-    elTextFrame.style.height = `${height}px`
-    elTextFrame.style.display = 'block'
+    gCtx.strokeRect(rectX, rectY, rectWidth, rectHeight)
 }
 
-function removeTextFrame() {
-    document.querySelector('.text-frame').style.display = 'none'
-}
 
 function onResize() {
 
@@ -166,7 +148,6 @@ function onLineClick(event) {
     if (clickedLineIdx === -1) return
 
     onSwitchLine(clickedLineIdx)
-    isDraggingLine = true
 }
 
 function getLineClicked(ev) {
