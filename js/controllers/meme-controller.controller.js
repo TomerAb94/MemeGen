@@ -46,27 +46,29 @@ function renderText() {
         gCtx.fillStyle = `${line.color}`
 
         const textWidth = gCtx.measureText(line.text).width;
-        var posX = line.pos ? line.pos.x : (gElCanvas.width - textWidth) / 2;
-        var posY = line.pos ? line.pos.y : 50
+        var posX = line.pos ? line.pos.x*gElCanvas.width : (gElCanvas.width - textWidth) / 2;
+        var posY = line.pos ? line.pos.y*gElCanvas.height : 50
 
         if (line.align === 'left') posX = spacing
-        if (line.align === 'right') posX = gElCanvas.width - spacing
+        if (line.align === 'right') posX = gElCanvas.width - spacing*3
+        if (line.align === 'center') posX = gElCanvas.width/2
 
         if (index === 1 && !line.pos) {
             // second line at the bottom
-            posY = gElCanvas.height - 30;
+            posY = gElCanvas.height - 30
         } else if (index > 1 && !line.pos) {
             posY += spacing * (index - 1)
         }
         gCtx.beginPath()
         gCtx.fillText(`${line.text}`, posX, posY);
 
-        saveLineLocation(index, posX, posY)
+        saveLineLocation(gElCanvas, index, posX, posY)
 
         if (index === meme.selectedLineIdx) drawTextFrame(line.text, posX, posY, line.size)
     })
 
 }
+
 
 function drawTextFrame(text, x, y, size) {
     const spacing = 20
@@ -78,9 +80,9 @@ function drawTextFrame(text, x, y, size) {
     const rectY = y + spacing / 3 - rectHeight
 
     gCtx.setLineDash([5, 5])
-    gCtx.strokeStyle = 'black' 
+    gCtx.strokeStyle = 'black'
     gCtx.lineWidth = 2
-    
+
     gCtx.strokeRect(rectX, rectY, rectWidth, rectHeight)
 
     gCtx.setLineDash([])
@@ -173,9 +175,9 @@ function getLineClicked(ev) {
         const textWidth = gCtx.measureText(line.text).width
         const textHeight = line.size
 
-        const textStartX = line.pos.x - 5
+        const textStartX = line.pos.x*gElCanvas.width - 5
         const textEndX = textStartX + textWidth + 10
-        const textEndY = line.pos.y
+        const textEndY = line.pos.y*gElCanvas.height
         const textStartY = textEndY - textHeight
 
 
@@ -214,8 +216,13 @@ function onDown(ev) {
     const pos = getEvPos(ev)
     gIsDrag = true
     gStartPos = pos
+    console.log(gStartPos);
+    
 
     document.body.style.cursor = 'move'
+
+    const meme = getMeme()
+    meme.lines[clickedLineIdx].align='null'
 }
 
 function onMove(ev) {
@@ -226,9 +233,10 @@ function onMove(ev) {
     const dx = pos.x - gStartPos.x
     const dy = pos.y - gStartPos.y
 
-    moveLine(dx, dy)
+    moveLine(gElCanvas,dx, dy)
 
     gStartPos = pos
+    console.log(gStartPos);
 
     const meme = getMeme()
     renderMeme(meme.selectedImgId)

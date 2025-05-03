@@ -28,6 +28,7 @@ var gImgs = [
     { id: 25, url: 'imgs/25.jpg', keywords: ['evil', 'funny'] },
 ]
 
+
 var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
@@ -37,7 +38,7 @@ var gMeme = {
             font: 'Arial, Helvetica, sans-serif',
             size: 20,
             color: 'black',
-            align: 'center'
+            align: 'center',
         },
         {
             text: 'TEXT',
@@ -120,9 +121,13 @@ function removeLine() {
     switchLine(gMeme.lines.length - 1)
 }
 
-function saveLineLocation(index, x, y) {
-    const pos = { x, y }
-    gMeme.lines[index].pos = pos
+function saveLineLocation(canvas,index, x, y) {
+    const pos = {
+        x: x / canvas.width, 
+        y: y / canvas.height
+    }
+    gMeme.lines[index].pos = pos;
+    
 }
 
 function returnDeafultSet() {
@@ -146,7 +151,13 @@ function returnDeafultSet() {
 }
 
 
-function moveLine(dx, dy) {
-    gMeme.lines[gMeme.selectedLineIdx].pos.x += dx
-    gMeme.lines[gMeme.selectedLineIdx].pos.y += dy
+function moveLine(canvas,dx, dy) {
+    const relativeDx = dx / canvas.width
+    const relativeDy = dy / canvas.height
+
+    let newX = gMeme.lines[gMeme.selectedLineIdx].pos.x + relativeDx
+    let newY = gMeme.lines[gMeme.selectedLineIdx].pos.y + relativeDy
+
+    gMeme.lines[gMeme.selectedLineIdx].pos.x = newX
+    gMeme.lines[gMeme.selectedLineIdx].pos.y = newY
 }
