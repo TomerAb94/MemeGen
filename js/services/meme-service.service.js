@@ -75,7 +75,7 @@ function setLineColor(color) {
 }
 
 function setFontSize(diff) {
-    if (diff < 0 && gMeme.lines[gMeme.selectedLineIdx].size<=6) return
+    if (diff < 0 && gMeme.lines[gMeme.selectedLineIdx].size <= 6) return
     gMeme.lines[gMeme.selectedLineIdx].size += diff
 }
 
@@ -112,12 +112,12 @@ function switchLine(index = -1) {
 }
 
 function removeLine() {
-    if(gMeme.lines.length<1)return
-    
+    if (gMeme.lines.length < 1) return
+
     gMeme.lines.splice(gMeme.selectedLineIdx, 1)
-    gMeme.selectedLineIdx=gMeme.lines.length-1
-    
-    switchLine(gMeme.lines.length-1)
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
+
+    switchLine(gMeme.lines.length - 1)
 }
 
 function saveLineLocation(index, x, y) {
@@ -146,3 +146,7 @@ function returnDeafultSet() {
 }
 
 
+function moveLine(dx, dy) {
+    gMeme.lines[gMeme.selectedLineIdx].pos.x += dx
+    gMeme.lines[gMeme.selectedLineIdx].pos.y += dy
+}

@@ -3,6 +3,10 @@
 var gElCanvas
 var gCtx
 
+//Drag & Drop
+var gIsDrag = false
+var gStartPos
+
 function onInitGen(imgId) {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
@@ -26,9 +30,11 @@ function renderImg(imgId, onImgReady) {
 
     img.onload = () => {
         gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
+        gCtx.beginPath()
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         onImgReady()
     }
+    
 }
 
 function renderText() {
@@ -40,36 +46,36 @@ function renderText() {
         gCtx.fillStyle = `${line.color}`
 
         const textWidth = gCtx.measureText(line.text).width;
+        var posX = line.pos ? line.pos.x : (gElCanvas.width - textWidth) / 2;
+        var posY = line.pos ? line.pos.y : 50
 
-        var x = (gElCanvas.width - textWidth) / 2;
-        var y = 50
-        if (line.align === 'left') x = spacing
-        if (line.align === 'right') x = gElCanvas.width - spacing
+        if (line.align === 'left') posX = spacing
+        if (line.align === 'right') posX = gElCanvas.width - spacing
 
-        if (index === 1) {
+        if (index === 1 && !line.pos) {
             // second line at the bottom
-            y = gElCanvas.height - 30;
-        } else if (index > 1) {
-            y += spacing * (index - 1)
+            posY = gElCanvas.height - 30;
+        } else if (index > 1&& !line.pos) {
+            posY += spacing * (index - 1)
         }
+        gCtx.beginPath()
+        gCtx.fillText(`${line.text}`, posX, posY);
 
-        gCtx.fillText(`${line.text}`, x, y);
+        saveLineLocation(index, posX, posY)
 
-        saveLineLocation(index, x, y)
-
-        if (index === meme.selectedLineIdx) drawTextFrame(line.text, x, y, line.size)
+        if (index === meme.selectedLineIdx) drawTextFrame(line.text, posX, posY, line.size)
     })
 
 }
 
 function drawTextFrame(text, x, y, size) {
-const spacing = 20
+    const spacing = 20
 
     const textMetrics = gCtx.measureText(text)
-    const rectWidth = textMetrics.width+spacing*2
-    const rectHeight = size+spacing/2
-    const rectX = x-spacing
-    const rectY = y+spacing/3 - rectHeight
+    const rectWidth = textMetrics.width + spacing * 2
+    const rectHeight = size + spacing / 2
+    const rectX = x - spacing
+    const rectY = y + spacing / 3 - rectHeight
 
     gCtx.strokeRect(rectX, rectY, rectWidth, rectHeight)
 }
@@ -161,8 +167,8 @@ function getLineClicked(ev) {
         const textWidth = gCtx.measureText(line.text).width
         const textHeight = line.size
 
-        const textStartX = line.pos.x
-        const textEndX = textStartX + textWidth
+        const textStartX = line.pos.x - 5
+        const textEndX = textStartX + textWidth + 10
         const textEndY = line.pos.y
         const textStartY = textEndY - textHeight
 
@@ -174,6 +180,7 @@ function getLineClicked(ev) {
             clickedY <= textEndY
         )
     })
+
     return clickedLineIdx
 }
 
@@ -193,3 +200,41 @@ function displaySection(containerName) {
     document.querySelector(containerName).classList.remove('hide')
 }
 
+function onDown(ev) {
+    const clickedLineIdx = getLineClicked(ev)
+    if (clickedLineIdx === -1) return
+
+    const pos = getEvPos(ev)
+    gIsDrag = true
+    gStartPos = pos
+
+    document.body.style.cursor = 'move'
+}
+
+function onMove(ev) {
+    if (!gIsDrag) return
+
+    const pos = getEvPos(ev)
+
+    const dx = pos.x - gStartPos.x
+    const dy = pos.y - gStartPos.y
+
+    moveLine(dx, dy)
+
+    gStartPos = pos
+
+    const meme = getMeme()
+    renderMeme(meme.selectedImgId)
+}
+
+function onUp(ev) {
+gIsDrag=false
+document.body.style.cursor='auto'
+}
+
+function getEvPos(ev) {
+    //later add touch evs
+    let pos = { x: ev.offsetX, y: ev.offsetY }
+
+    return pos
+}

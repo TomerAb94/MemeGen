@@ -29,7 +29,11 @@
     <section class="gen-container flex flex-column">
         <div class="canvas-container">
             <canvas class="meme" width="400" height="400" 
-            onclick="onLineClick(event)">
+            onclick="onLineClick(event)"
+            onmousedown="onDown(event)"
+            onmousemove="onMove(event)"
+            onmouseup="onUp(event)"
+            >
         </canvas>
         </div>
         
