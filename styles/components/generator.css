@@ -2,8 +2,7 @@
 .generator{
     display: grid;
     padding: 10px;
-    background-color: rgb(170, 176, 174);
+    background-color: var(--clr-secondery-2);
     border-radius: 10px;
     gap: 10px;
 }
-

@@ -15,6 +15,7 @@ function onInitGen(imgId) {
     displaySection('.gen-container')
 }
 
+
 function renderMeme(imgId) {
     renderImg(imgId, renderText)
 }
@@ -33,12 +34,12 @@ function renderImg(imgId, onImgReady) {
 
 function renderText() {
     const meme = getMeme()
-    console.log(meme.lines.length);
-    if (meme.lines.length < 1){
+
+    if (meme.lines.length < 1) {
         removeTextFrame()
         return
-    } 
-    
+    }
+
     const spacing = 30;
 
     meme.lines.forEach((line, index) => {
@@ -69,29 +70,25 @@ function renderText() {
 }
 
 function addTextFrame(text, x, y, size) {
-    const elTextFrame = document.querySelector('.text-frame')
+    const elTextFrame = document.querySelector('.text-frame');
 
-    const [xPad, yPad] = [20, 5]
-    const textMetrics = gCtx.measureText(text)
-    const rect = {
-        width: textMetrics.width + 2 * xPad,
-        height: size + 2 * yPad,
-        x: x - xPad,
-        y: y + yPad + 2 - (size + 2 * yPad)
-    }
+    const padding = 20
+    const width = gCtx.measureText(text).width + padding * 2
+    const height = size + padding / 4
 
-    const { left, top } = document.querySelector('.meme').getBoundingClientRect() //to extract (0,0) of canvas from viewport
-    const [scrollX, scrollY] = [window.scrollX || window.pageXOffset, window.scrollY || window.pageYOffset] //if user scrolls the page
+    const { left, top } = document.querySelector('.meme').getBoundingClientRect();
 
-    // Apply styles to .text-frame
-    elTextFrame.style.left = `${left + rect.x + scrollX}px`
-    elTextFrame.style.top = `${top + rect.y + scrollY}px`
-    elTextFrame.style.width = `${rect.width}px`
-    elTextFrame.style.height = `${rect.height}px`
+    const frameX = left + x - padding
+    const frameY = top + y - size
+
+    elTextFrame.style.left = `${frameX}px`
+    elTextFrame.style.top = `${frameY}px`
+    elTextFrame.style.width = `${width}px`
+    elTextFrame.style.height = `${height}px`
     elTextFrame.style.display = 'block'
 }
 
-function removeTextFrame(){
+function removeTextFrame() {
     document.querySelector('.text-frame').style.display = 'none'
 }
 
@@ -165,19 +162,20 @@ function initTextInput(text) {
 }
 
 function onLineClick(event) {
-    const clickedLineIdx = isLineClicked(event)
+    const clickedLineIdx = getLineClicked(event)
     if (clickedLineIdx === -1) return
 
     onSwitchLine(clickedLineIdx)
+    isDraggingLine = true
 }
 
-function isLineClicked(ev) {
+function getLineClicked(ev) {
     const meme = getMeme()
 
-    const clickedX = ev.offsetX
-    const clickedY = ev.offsetY
+    const clickedLineIdx = meme.lines.findIndex((line) => {
+        const clickedX = ev.offsetX
+        const clickedY = ev.offsetY
 
-    const clickedLineIdx = meme.lines.findIndex((line, index) => {
         const textWidth = gCtx.measureText(line.text).width
         const textHeight = line.size
 
@@ -197,6 +195,7 @@ function isLineClicked(ev) {
     return clickedLineIdx
 }
 
+
 function onRemoveLine() {
     removeLine()
 
@@ -211,3 +210,4 @@ function hideSection(containerName) {
 function displaySection(containerName) {
     document.querySelector(containerName).classList.remove('hide')
 }
+

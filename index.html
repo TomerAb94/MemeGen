@@ -10,6 +10,7 @@
 </head>
 
 <body class="main-layout" onload="onInitGallery()" onresize="onResize()">
+
     <header class="main-header full flex space-between align-center">
         <div class="logo"> MEME<span>G</span>EN</div>
         <nav class="main-nav">
@@ -27,9 +28,18 @@
 
     <section class="gen-container flex flex-column">
         <div class="canvas-container">
-            <canvas class="meme" width="400" height="400" onclick="onLineClick(event)"></canvas>
+            <canvas class="meme" width="400" height="400" 
+            onclick="onLineClick(event)">
+        </canvas>
+            
         </div>
-        <div class="text-frame"></div>
+        <div class="text-frame">
+            <div class="text-area"></div>
+            <div class="corner top-left"></div>
+            <div class="corner top-right"></div>
+            <div class="corner bottom-left"></div>
+            <div class="corner bottom-right"></div>
+        </div>
         <div class="generator" action="">
 
             <label class="flex justify-center align-center" for=""><input class="text-input"

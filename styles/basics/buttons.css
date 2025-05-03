@@ -89,3 +89,7 @@ button:hover,
 .align-text-btn:nth-child(5) {
     grid-column: 5;
 }
+
+.btn-toggle-menu{
+    color:  var(--clr-text-btn);
+}

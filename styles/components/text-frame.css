@@ -1,5 +1,45 @@
-.text-frame{
+.text-frame {
     position: absolute;
     border: 0.13em dashed black;
+    cursor: move;
+}
+
+.text-area {
+    position: absolute;
+    top: 0.3em;
+    left: 0.3em;
+    right: 0.3em;
+    bottom: 0.3em;
     cursor: text;
+}
+
+.corner {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border: 2px solid black;
+}
+
+.top-left {
+    top: -5px;
+    left: -5px;
+    cursor: nwse-resize;
+}
+
+.top-right {
+    top: -5px;
+    right: -5px;
+    cursor: nesw-resize;
+}
+
+.bottom-left {
+    bottom: -5px;
+    left: -5px;
+    cursor: nesw-resize;
+}
+
+.bottom-right {
+    bottom: -5px;
+    right: -5px;
+    cursor: nwse-resize;
 }
