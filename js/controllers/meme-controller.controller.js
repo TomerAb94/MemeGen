@@ -63,12 +63,13 @@ function renderText() {
 }
 
 function drawTextFrame(text, x, y, size) {
-    const textMetrics = gCtx.measureText(text)
-    const rectWidth = textMetrics.width
-    const rectHeight = size
-    const rectX = x
-    const rectY = y - rectHeight
+const spacing = 20
 
+    const textMetrics = gCtx.measureText(text)
+    const rectWidth = textMetrics.width+spacing*2
+    const rectHeight = size+spacing/2
+    const rectX = x-spacing
+    const rectY = y+spacing/3 - rectHeight
 
     gCtx.strokeRect(rectX, rectY, rectWidth, rectHeight)
 }
