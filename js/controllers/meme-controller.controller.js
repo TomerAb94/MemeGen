@@ -34,7 +34,7 @@ function renderImg(imgId, onImgReady) {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         onImgReady()
     }
-    
+
 }
 
 function renderText() {
@@ -55,7 +55,7 @@ function renderText() {
         if (index === 1 && !line.pos) {
             // second line at the bottom
             posY = gElCanvas.height - 30;
-        } else if (index > 1&& !line.pos) {
+        } else if (index > 1 && !line.pos) {
             posY += spacing * (index - 1)
         }
         gCtx.beginPath()
@@ -201,6 +201,7 @@ function displaySection(containerName) {
 }
 
 function onDown(ev) {
+    onLineClick(ev)
     const clickedLineIdx = getLineClicked(ev)
     if (clickedLineIdx === -1) return
 
@@ -228,8 +229,8 @@ function onMove(ev) {
 }
 
 function onUp(ev) {
-gIsDrag=false
-document.body.style.cursor='auto'
+    gIsDrag = false
+    document.body.style.cursor = 'auto'
 }
 
 function getEvPos(ev) {
