@@ -77,7 +77,13 @@ function drawTextFrame(text, x, y, size) {
     const rectX = x - spacing
     const rectY = y + spacing / 3 - rectHeight
 
+    gCtx.setLineDash([5, 5])
+    gCtx.strokeStyle = 'black' 
+    gCtx.lineWidth = 2
+    
     gCtx.strokeRect(rectX, rectY, rectWidth, rectHeight)
+
+    gCtx.setLineDash([])
 }
 
 
