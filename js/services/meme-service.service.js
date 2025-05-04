@@ -54,6 +54,47 @@ var gMeme = {
 
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
+var gRandomLines = [
+    "When life gives you lemons",
+    "That feeling when",
+    "I can't even",
+    "Why you no",
+    "No one asked",
+    "Basically me",
+    "When you realize",
+    "Do it for the vine",
+    "You good bro?",
+    "Just do it",
+    "Not my problem",
+    "I don't know lol",
+    "Y'all won't believe",
+    "Every single time",
+    "What are those?",
+    "Out of here",
+    "This is fine",
+    "Same energy",
+    "Big mood",
+    "Me trying",
+    "Moment of silence",
+    "Hold my beer",
+    "That's a mood",
+    "Tell me more",
+    "I'm not crying",
+    "Oops, all me",
+    "Can't relate",
+    "Good vibes only",
+    "Wait, what?",
+    "I came here to...",
+    "That awkward moment",
+    "Living rent free",
+    "Its happening",
+    "Stay woke",
+    "Facts only",
+    "Keep calm",
+    "Never forget",
+    "Ight, Imma head out"
+  ]
+
 function getImgById(imgId) {
     gMeme.selectedImgId = imgId
 
@@ -165,4 +206,8 @@ function moveLine(canvas,dx, dy) {
 
     gMeme.lines[gMeme.selectedLineIdx].pos.x = newX
     gMeme.lines[gMeme.selectedLineIdx].pos.y = newY
+}
+
+function getTextLines(){
+    return gRandomLines
 }

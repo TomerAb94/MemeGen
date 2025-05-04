@@ -5,10 +5,14 @@
 
     cursor: pointer;
     height: 80px;
-    width: 80px;
+    width: 100px;
     border-left: 1px solid var(--clr-secondery--2);
 }
 
 .main-nav-list>li:last-child{
     border-right: 1px solid var(--clr-secondery--2);
+}
+
+.main-nav-list>.flexible{
+  color: var(--clr-logo-1);
 }

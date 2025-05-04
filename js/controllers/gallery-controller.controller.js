@@ -22,3 +22,4 @@ function renderGallery() {
     }).join('')
 
 }
+

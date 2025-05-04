@@ -346,3 +346,18 @@ function isFrameBorderClicked(ev) {
 
     return { isResize: false, corner: '' }
 }
+
+function onFlexible() {
+const imgs =  getImgs()
+const imgIdx = getRandomInt(0,imgs.length)
+const lines = getTextLines()
+const randomLines =  []
+randomLines.push(lines[getRandomInt(0,lines.length)])
+randomLines.push(lines[getRandomInt(0,lines.length)])
+
+const meme = getMeme()
+meme.lines[0].text = randomLines[0]
+meme.lines[1].text = randomLines[1]
+
+onInitGen(imgIdx)
+}
