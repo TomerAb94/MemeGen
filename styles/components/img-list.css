@@ -1,0 +1,11 @@
+.img-list li:hover {
+    scale: 1.1;
+    rotate: 10deg;
+    transform: translateY(-10px);
+    
+}
+
+.img-list:has(li:hover)>li:not(:hover) {
+    scale: .9;
+    opacity: .6;
+}
