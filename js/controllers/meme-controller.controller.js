@@ -363,3 +363,16 @@ function onFlexible() {
 
     onInitGen(imgIdx)
 }
+
+function onFacebookShare(ev){
+    ev.preventDefault()
+    const canvasData = gElCanvas.toDataURL('meme/jpeg')
+    
+    function onSuccess(uploadedImgUrl) {
+        
+        const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`)
+    }
+    uploadImg(canvasData, onSuccess)
+    
+}

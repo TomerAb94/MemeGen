@@ -73,6 +73,10 @@ button:hover,
     gap: 5px;
 }
 
+.share-btn{
+    background-color: var(--clr-share-btn);
+}
+
 .align-text-btn {
     grid-row: 1;
     background-color: var(--clr-font-btn);

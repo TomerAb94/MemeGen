@@ -15,7 +15,7 @@
         <div class="logo"> MEME<span>G</span>EN</div>
         <nav class="main-nav">
             <ul class="main-nav-list clean-list flex">
-                <li class="flexible"><a onclick="onFlexible()">Im Flexible</a></li>
+                <li onclick="onFlexible()" class="flexible"><a href="#">Im Flexible</a></li>
                 <li onclick="onInitGallery()"><a href="#"></a>Gallery</li>
                 <li><a href="#"></a>About</li>
             </ul>
@@ -29,15 +29,11 @@
 
     <section class="gen-container hide">
         <div class="canvas-container">
-            <canvas class="meme" width="400" height="400" 
-            onclick="onLineClick(event)"
-            onmousedown="onDown(event)"
-            onmousemove="onMove(event)"
-            onmouseup="onUp(event)"
-            >
-        </canvas>
+            <canvas class="meme" width="400" height="400" onclick="onLineClick(event)" onmousedown="onDown(event)"
+                onmousemove="onMove(event)" onmouseup="onUp(event)">
+            </canvas>
         </div>
-        
+
         <div class="generator" action="">
 
             <label class="flex justify-center align-center" for=""><input class="text-input"
@@ -81,6 +77,10 @@
             </div>
 
             <div class="download-gen flex justify-center">
+                <form action="" method="POST" enctype="multipart/form-data" onsubmit="onFacebookShare(event)">
+                    <input name="img" id="imgData" type="hidden" />
+                    <button class="download-btn share-btn" type="submit"><i class="fa-solid fa-share-nodes"></i>Share</button>
+                </form>
                 <a class="button download-btn" href="#" onclick="onDownloadCanvas(this)" download="file-name"><i
                         class="fa-solid fa-download"></i>Download</a>
             </div>
