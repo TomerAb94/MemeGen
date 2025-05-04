@@ -10,8 +10,7 @@ var gLineBorderPos = {
     bottomRight: { x: 0, y: 0 },
 }
 
-//Download (for delete frame)
-var gIsDownload = false
+var gIsLineClicked = false
 
 //Drag & Drop
 var gIsDrag = false
@@ -70,7 +69,7 @@ function renderText() {
 
         saveLineLocation(gElCanvas, index, posX, posY)
 
-        if (index === meme.selectedLineIdx && !gIsDownload) {
+        if (index === meme.selectedLineIdx && gIsLineClicked) {
             drawTextFrame(line.text, posX, posY, line.size)
         }
     })
@@ -144,15 +143,12 @@ function onAlignText(align) {
 }
 
 function onDownloadCanvas(elLink) {
-    gIsDownload = true
     const meme = getMeme()
     renderMeme(meme.selectedImgId)
 
     const dataUrl = gElCanvas.toDataURL()
     elLink.href = dataUrl
     elLink.download = 'my-meme'
-
-    gIsDownload = false
 }
 
 function onAddLine() {
@@ -176,9 +172,14 @@ function initTextInput(text) {
 
 function onLineClick(event) {
     const clickedLineIdx = getLineClicked(event)
-    if (clickedLineIdx === -1) return
-
-    onSwitchLine(clickedLineIdx)
+    if (clickedLineIdx === -1){
+        gIsLineClicked = false
+        const meme = getMeme()
+        renderMeme(meme.selectedImgId)
+    return
+}
+gIsLineClicked=true
+onSwitchLine(clickedLineIdx)
 }
 
 function getLineClicked(ev) {
@@ -348,16 +349,17 @@ function isFrameBorderClicked(ev) {
 }
 
 function onFlexible() {
-const imgs =  getImgs()
-const imgIdx = getRandomInt(0,imgs.length)
-const lines = getTextLines()
-const randomLines =  []
-randomLines.push(lines[getRandomInt(0,lines.length)])
-randomLines.push(lines[getRandomInt(0,lines.length)])
+    returnDeafultSet()
+    const imgs = getImgs()
+    const imgIdx = getRandomInt(0, imgs.length)
+    const lines = getTextLines()
+    const randomLines = []
+    randomLines.push(lines[getRandomInt(0, lines.length)])
+    randomLines.push(lines[getRandomInt(0, lines.length)])
 
-const meme = getMeme()
-meme.lines[0].text = randomLines[0]
-meme.lines[1].text = randomLines[1]
+    const meme = getMeme()
+    meme.lines[0].text = randomLines[0]
+    meme.lines[1].text = randomLines[1]
 
-onInitGen(imgIdx)
+    onInitGen(imgIdx)
 }
