@@ -3,11 +3,11 @@
 function onInitGallery() {
     displaySection('.gallery-container')
     hideSection('.gen-container')
+    
     restoreTextInput()
     returnDeafultSet()
 
     renderGallery()
-
 }
 
 function restoreTextInput() {

@@ -21,14 +21,14 @@ var gStartPos
 var gIsResize = { isResize: false, corner: '' }
 
 function onInitGen(imgId) {
+    displaySection('.gen-container')
+    hideSection('.gallery-container')
+
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
 
     onResize()
     renderMeme(+imgId)
-
-    hideSection('.gallery-container')
-    displaySection('.gen-container')
 }
 
 
@@ -259,10 +259,10 @@ function onMove(ev) {
     const dy = pos.y - gStartPos.y
 
     if (gIsResize.isResize) {
-        
-        if (gIsResize.corner === 'topLeft' || gIsResize.corner === 'topRight') line.size+=(dy*-1)
-        if (gIsResize.corner === 'bottomLeft' || gIsResize.corner === 'bottomRight') line.size+=dy
-        
+
+        if (gIsResize.corner === 'topLeft' || gIsResize.corner === 'topRight') line.size += (dy * -1)
+        if (gIsResize.corner === 'bottomLeft' || gIsResize.corner === 'bottomRight') line.size += dy
+
         gStartPos = pos
         renderMeme(meme.selectedImgId)
         return
@@ -344,5 +344,5 @@ function isFrameBorderClicked(ev) {
         return { cursor: 'nesw-resize', corner: 'bottomLeft' }
     }
 
-    return  { isResize: false, corner: '' }
+    return { isResize: false, corner: '' }
 }
