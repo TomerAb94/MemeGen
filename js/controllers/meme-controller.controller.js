@@ -3,9 +3,22 @@
 var gElCanvas
 var gCtx
 
+var gLineBorderPos = {
+    topLeft: { x: 0, y: 0 },
+    topRight: { x: 0, y: 0 },
+    bottomLeft: { x: 0, y: 0 },
+    bottomRight: { x: 0, y: 0 },
+}
+
+//Download (for delete frame)
+var gIsDownload = false
+
 //Drag & Drop
 var gIsDrag = false
 var gStartPos
+
+//Resize
+var gIsResize = { isResize: false, corner: '' }
 
 function onInitGen(imgId) {
     gElCanvas = document.querySelector('canvas')
@@ -45,26 +58,21 @@ function renderText() {
         gCtx.font = `${line.size}px ${line.font}`
         gCtx.fillStyle = `${line.color}`
 
-        const textWidth = gCtx.measureText(line.text).width;
-        var posX = line.pos ? line.pos.x*gElCanvas.width : (gElCanvas.width - textWidth) / 2;
-        var posY = line.pos ? line.pos.y*gElCanvas.height : 50
+        var posX = line.pos.x * gElCanvas.width
+        var posY = line.pos.y * gElCanvas.height
 
         if (line.align === 'left') posX = spacing
-        if (line.align === 'right') posX = gElCanvas.width - spacing*3
-        if (line.align === 'center') posX = gElCanvas.width/2
+        if (line.align === 'right') posX = gElCanvas.width - spacing * 3
+        if (line.align === 'center') posX = gElCanvas.width / 2
 
-        if (index === 1 && !line.pos) {
-            // second line at the bottom
-            posY = gElCanvas.height - 30
-        } else if (index > 1 && !line.pos) {
-            posY += spacing * (index - 1)
-        }
         gCtx.beginPath()
         gCtx.fillText(`${line.text}`, posX, posY);
 
         saveLineLocation(gElCanvas, index, posX, posY)
 
-        if (index === meme.selectedLineIdx) drawTextFrame(line.text, posX, posY, line.size)
+        if (index === meme.selectedLineIdx && !gIsDownload) {
+            drawTextFrame(line.text, posX, posY, line.size)
+        }
     })
 
 }
@@ -78,6 +86,8 @@ function drawTextFrame(text, x, y, size) {
     const rectHeight = size + spacing / 2
     const rectX = x - spacing
     const rectY = y + spacing / 3 - rectHeight
+
+    updateLineCorners(rectWidth, rectHeight, rectX, rectY)
 
     gCtx.setLineDash([5, 5])
     gCtx.strokeStyle = 'black'
@@ -134,15 +144,21 @@ function onAlignText(align) {
 }
 
 function onDownloadCanvas(elLink) {
+    gIsDownload = true
+    const meme = getMeme()
+    renderMeme(meme.selectedImgId)
+
     const dataUrl = gElCanvas.toDataURL()
     elLink.href = dataUrl
     elLink.download = 'my-meme'
+
+    gIsDownload = false
 }
 
 function onAddLine() {
-    addLine()
-
     const meme = getMeme()
+    addLine(gMeme.lines.length)
+
     renderMeme(meme.selectedImgId)
 }
 
@@ -175,9 +191,9 @@ function getLineClicked(ev) {
         const textWidth = gCtx.measureText(line.text).width
         const textHeight = line.size
 
-        const textStartX = line.pos.x*gElCanvas.width - 5
+        const textStartX = line.pos.x * gElCanvas.width - 5
         const textEndX = textStartX + textWidth + 10
-        const textEndY = line.pos.y*gElCanvas.height
+        const textEndY = line.pos.y * gElCanvas.height
         const textStartY = textEndY - textHeight
 
 
@@ -210,40 +226,59 @@ function displaySection(containerName) {
 
 function onDown(ev) {
     onLineClick(ev)
-    const clickedLineIdx = getLineClicked(ev)
-    if (clickedLineIdx === -1) return
-
-    const pos = getEvPos(ev)
-    gIsDrag = true
-    gStartPos = pos
-    console.log(gStartPos);
-    
-
-    document.body.style.cursor = 'move'
-
     const meme = getMeme()
-    meme.lines[clickedLineIdx].align='null'
+
+    const clickedLineIdx = getLineClicked(ev)
+    if (clickedLineIdx === -1) {
+        const { cursor, corner } = isFrameBorderClicked(ev)
+        if ({ cursor, corner }) {
+            gIsResize = { isResize: true, corner }
+            // console.log(gIsResize);
+            gStartPos = getEvPos(ev)
+            document.body.style.cursor = cursor
+            return
+        }
+        return
+    }
+
+    gIsDrag = true
+    gStartPos = getEvPos(ev)
+    document.body.style.cursor = 'move'
+    meme.lines[clickedLineIdx].align = 'null'
+
 }
 
 function onMove(ev) {
-    if (!gIsDrag) return
+    if (!gIsDrag && !gIsResize.isResize) return
 
     const pos = getEvPos(ev)
+    const meme = getMeme()
+    const line = meme.lines[meme.selectedLineIdx]
 
     const dx = pos.x - gStartPos.x
     const dy = pos.y - gStartPos.y
 
-    moveLine(gElCanvas,dx, dy)
+    if (gIsResize.isResize) {
+        
+        if (gIsResize.corner === 'topLeft' || gIsResize.corner === 'topRight') line.size+=(dy*-1)
+        if (gIsResize.corner === 'bottomLeft' || gIsResize.corner === 'bottomRight') line.size+=dy
+        
+        gStartPos = pos
+        renderMeme(meme.selectedImgId)
+        return
+    }
 
-    gStartPos = pos
-    console.log(gStartPos);
+    if (gIsDrag) {
+        moveLine(gElCanvas, dx, dy)
+        gStartPos = pos
+        renderMeme(meme.selectedImgId)
+    }
 
-    const meme = getMeme()
-    renderMeme(meme.selectedImgId)
 }
 
 function onUp(ev) {
     gIsDrag = false
+    gIsResize = false
     document.body.style.cursor = 'auto'
 }
 
@@ -252,4 +287,62 @@ function getEvPos(ev) {
     let pos = { x: ev.offsetX, y: ev.offsetY }
 
     return pos
+}
+
+function updateLineCorners(rectWidth, rectHeight, rectX, rectY) {
+    gLineBorderPos = {
+        topLeft: { x: rectX, y: rectY },
+        topRight: { x: rectX + rectWidth, y: rectY },
+        bottomLeft: { x: rectX, y: rectY + rectHeight },
+        bottomRight: { x: rectX + rectWidth, y: rectY + rectHeight },
+    }
+
+}
+
+function isFrameBorderClicked(ev) {
+
+    const clickedX = ev.offsetX
+    const clickedY = ev.offsetY
+
+    const topLeft = gLineBorderPos.topLeft
+    const topRight = gLineBorderPos.topRight
+    const bottomLeft = gLineBorderPos.bottomLeft
+    const bottomRight = gLineBorderPos.bottomRight
+
+    const area = 10
+
+    if (
+        clickedX >= topLeft.x - area &&
+        clickedX <= topLeft.x + area &&
+        clickedY >= topLeft.y - area &&
+        clickedY <= topLeft.y + area
+    ) {
+        return { cursor: 'nwse-resize', corner: 'topLeft' }
+    }
+    if (
+        clickedX >= bottomRight.x - area &&
+        clickedX <= bottomRight.x + area &&
+        clickedY >= bottomRight.y - area &&
+        clickedY <= bottomRight.y + area
+    ) {
+        return { cursor: 'nwse-resize', corner: 'bottomRight' }
+    }
+    if (
+        clickedX >= topRight.x - area &&
+        clickedX <= topRight.x + area &&
+        clickedY >= topRight.y - area &&
+        clickedY <= topRight.y + area
+    ) {
+        return { cursor: 'nesw-resize', corner: 'topRight' }
+    }
+    if (
+        clickedX >= bottomLeft.x - area &&
+        clickedX <= bottomLeft.x + area &&
+        clickedY >= bottomLeft.y - area &&
+        clickedY <= bottomLeft.y + area
+    ) {
+        return { cursor: 'nesw-resize', corner: 'bottomLeft' }
+    }
+
+    return  { isResize: false, corner: '' }
 }

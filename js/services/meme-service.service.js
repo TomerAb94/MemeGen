@@ -38,14 +38,16 @@ var gMeme = {
             font: 'Arial, Helvetica, sans-serif',
             size: 20,
             color: 'black',
-            align: 'center',
+            align: '',
+            pos: {x:0.45,y:0.2}
         },
         {
             text: 'TEXT',
             font: 'Arial, Helvetica, sans-serif',
             size: 20,
             color: 'black',
-            align: 'center'
+            align: '',
+            pos: {x:0.45,y:0.85}
         },
     ]
 }
@@ -93,7 +95,8 @@ function addLine() {
         text: 'TEXT',
         font: 'Arial, Helvetica, sans-serif',
         size: 20,
-        color: 'black'
+        color: 'black',
+        pos:{x:0.45,y:0.5}
     }
     gMeme.lines.push(newLine)
 
@@ -138,14 +141,16 @@ function returnDeafultSet() {
                 font: 'Arial, Helvetica, sans-serif',
                 size: 20,
                 color: 'black',
-                align: 'center'
+                align: '',
+                pos: {x:0.45,y:0.2},
             },
             {
                 text: 'TEXT',
                 font: 'Arial, Helvetica, sans-serif',
                 size: 20,
                 color: 'black',
-                align: 'center'
+                align: '',
+                pos: {x:0.45,y:0.85},
             }
         ]
 }
